@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="description"
@@ -19,12 +17,882 @@
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+    <!-- ================= CSS ================= -->
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background: #f7fff8;
+            color: #222;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* ================= HEADER ================= */
+
+        .header {
+            background: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            min-height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 25px;
+            font-weight: 800;
+            color: #222;
+        }
+
+        .logo-icon {
+            font-size: 30px;
+        }
+
+        .logo-green {
+            color: #2e9e49;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            font-size: 15px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #2e9e49;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .icon-btn,
+        .cart-btn,
+        .menu-btn {
+            border: none;
+            background: #f2faf3;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            font-size: 19px;
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            width: 20px;
+            height: 20px;
+            background: #ff4d4d;
+            color: white;
+            font-size: 11px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-btn {
+            display: none;
+        }
+
+        /* ================= MOBILE MENU ================= */
+
+        .mobile-menu {
+            display: none;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #effff2, #ffffff);
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .hero-small-title {
+            display: inline-block;
+            background: #dff7e3;
+            color: #23823b;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            color: #173b20;
+        }
+
+        .hero h1 span {
+            color: #2e9e49;
+        }
+
+        .hero p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.8;
+            max-width: 550px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .primary-btn,
+        .secondary-btn {
+            padding: 13px 23px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .primary-btn {
+            background: #2e9e49;
+            color: white;
+        }
+
+        .primary-btn:hover {
+            background: #237c37;
+            transform: translateY(-2px);
+        }
+
+        .secondary-btn {
+            border: 2px solid #2e9e49;
+            color: #2e9e49;
+        }
+
+        .secondary-btn:hover {
+            background: #2e9e49;
+            color: white;
+        }
+
+        .hero-features {
+            display: flex;
+            gap: 25px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature > span {
+            font-size: 27px;
+        }
+
+        .feature strong {
+            display: block;
+            font-size: 13px;
+        }
+
+        .feature small {
+            color: #777;
+            font-size: 11px;
+        }
+
+        /* ================= HERO IMAGE ================= */
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-circle {
+            width: 420px;
+            height: 420px;
+            background: #dff7e3;
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .basket {
+            font-size: 130px;
+            z-index: 2;
+        }
+
+        .vegetable {
+            position: absolute;
+            font-size: 55px;
+            animation: float 3s infinite ease-in-out;
+        }
+
+        .vegetable-1 {
+            top: 40px;
+            left: 90px;
+        }
+
+        .vegetable-2 {
+            top: 50px;
+            right: 70px;
+        }
+
+        .vegetable-3 {
+            bottom: 60px;
+            left: 60px;
+        }
+
+        .vegetable-4 {
+            bottom: 45px;
+            right: 70px;
+        }
+
+        .vegetable-5 {
+            top: 175px;
+            left: 25px;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* ================= SEARCH ================= */
+
+        .search-section {
+            padding: 25px 0;
+            background: white;
+        }
+
+        .search-box {
+            max-width: 700px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .search-box span {
+            padding-left: 15px;
+        }
+
+        .search-box input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 15px;
+            font-size: 14px;
+        }
+
+        .search-box button {
+            border: none;
+            background: #2e9e49;
+            color: white;
+            padding: 15px 25px;
+            font-weight: 600;
+        }
+
+        /* ================= SECTION HEADING ================= */
+
+        section {
+            scroll-margin-top: 80px;
+        }
+
+        .categories-section,
+        .products-section,
+        .about-section,
+        .contact-section {
+            padding: 80px 0;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-heading > span {
+            color: #2e9e49;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .section-heading h2 {
+            font-size: 34px;
+            margin: 8px 0;
+            color: #173b20;
+        }
+
+        .section-heading p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* ================= CATEGORIES ================= */
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .category-card {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .category-icon {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        .category-card h3 {
+            font-size: 17px;
+            margin-bottom: 5px;
+        }
+
+        .category-card p {
+            color: #888;
+            font-size: 13px;
+        }
+
+        /* ================= FILTER ================= */
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 35px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 22px;
+            border: 1px solid #2e9e49;
+            background: white;
+            color: #2e9e49;
+            border-radius: 25px;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #2e9e49;
+            color: white;
+        }
+
+        /* ================= PRODUCTS ================= */
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+            transition: 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .product-image {
+            height: 190px;
+            background: #f2faf3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .product-emoji {
+            font-size: 90px;
+        }
+
+        .offer-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #ff5b5b;
+            color: white;
+            font-size: 11px;
+            padding: 5px 9px;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+
+        .heart-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            border: none;
+            background: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            font-size: 20px;
+            color: #555;
+        }
+
+        .heart-btn:hover {
+            color: #ff4d4d;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-category {
+            color: #2e9e49;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .product-info h3 {
+            margin: 5px 0;
+            font-size: 17px;
+        }
+
+        .product-description {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 15px;
+        }
+
+        .product-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .price {
+            font-size: 18px;
+            font-weight: 700;
+            color: #222;
+        }
+
+        .price span {
+            font-size: 11px;
+            color: #888;
+            font-weight: 400;
+        }
+
+        .add-btn {
+            border: none;
+            background: #2e9e49;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .add-btn:hover {
+            background: #237c37;
+        }
+
+        /* ================= ABOUT ================= */
+
+        .about-section {
+            background: #effff2;
+        }
+
+        .about-content {
+            max-width: 850px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .about-content h2 {
+            font-size: 35px;
+            color: #173b20;
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            color: #666;
+            line-height: 1.9;
+            font-size: 15px;
+        }
+
+        /* ================= CONTACT ================= */
+
+        .contact-box {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+        }
+
+        .contact-box input,
+        .contact-box textarea {
+            width: 100%;
+            padding: 13px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 7px;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .contact-box textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .contact-box button {
+            width: 100%;
+            padding: 13px;
+            background: #2e9e49;
+            border: none;
+            color: white;
+            border-radius: 7px;
+            font-weight: 600;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #173b20;
+            color: white;
+            padding: 45px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-content h3 {
+            margin-bottom: 15px;
+        }
+
+        .footer-content p {
+            color: #c7d6ca;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .footer-content a {
+            display: block;
+            color: #c7d6ca;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .footer-content a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            padding-top: 20px;
+            color: #c7d6ca;
+            font-size: 12px;
+        }
+
+        /* ================= CART ================= */
+
+        .cart-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cart-box {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .close-cart {
+            border: none;
+            background: #eee;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            font-size: 18px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-info strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .cart-item-info small {
+            color: #777;
+        }
+
+        .remove-btn {
+            border: none;
+            background: #ffe7e7;
+            color: #e33;
+            padding: 5px 9px;
+            border-radius: 5px;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 18px;
+            margin: 20px 0;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 13px;
+            background: #2e9e49;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font-weight: 600;
+        }
+
+        .empty-cart {
+            text-align: center;
+            color: #888;
+            padding: 25px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 1000px) {
+
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+        }
+
+        @media (max-width: 768px) {
+
+            .nav-menu {
+                display: none;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding: 50px 0;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero p {
+                margin: auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-features {
+                justify-content: center;
+            }
+
+            .hero-circle {
+                width: 320px;
+                height: 320px;
+            }
+
+            .basket {
+                font-size: 100px;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+
+        }
+
+        @media (max-width: 500px) {
+
+            .container {
+                width: 92%;
+            }
+
+            .logo {
+                font-size: 21px;
+            }
+
+            .header-actions {
+                gap: 5px;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .categories-grid,
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-circle {
+                width: 270px;
+                height: 270px;
+            }
+
+            .vegetable {
+                font-size: 40px;
+            }
+
+            .basket {
+                font-size: 80px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .search-box button {
+                padding: 15px;
+            }
+
+        }
+
+    </style>
 </head>
 
 <body>
@@ -35,13 +903,11 @@
 
         <div class="container navbar">
 
-            <!-- Logo -->
             <div class="logo">
                 <span class="logo-icon">🥬</span>
                 <span>Fresh<span class="logo-green">Cart</span></span>
             </div>
 
-            <!-- Navigation -->
             <nav class="nav-menu">
                 <a href="#home">Home</a>
                 <a href="#categories">Categories</a>
@@ -50,21 +916,17 @@
                 <a href="#contact">Contact</a>
             </nav>
 
-            <!-- Header Actions -->
             <div class="header-actions">
 
-                <!-- Search -->
                 <button class="icon-btn" onclick="focusSearch()" title="Search">
                     🔍
                 </button>
 
-                <!-- Cart -->
                 <button class="cart-btn" onclick="openCart()">
                     🛒
                     <span class="cart-count" id="cartCount">0</span>
                 </button>
 
-                <!-- Mobile Menu -->
                 <button class="menu-btn" onclick="toggleMenu()">
                     ☰
                 </button>
@@ -75,8 +937,7 @@
 
     </header>
 
-
-    <!-- ================= MOBILE NAVIGATION ================= -->
+    <!-- ================= MOBILE MENU ================= -->
 
     <div class="mobile-menu" id="mobileMenu">
 
@@ -88,8 +949,7 @@
 
     </div>
 
-
-    <!-- ================= HERO SECTION ================= -->
+    <!-- ================= HERO ================= -->
 
     <section class="hero" id="home">
 
@@ -154,7 +1014,6 @@
 
             </div>
 
-
             <div class="hero-image">
 
                 <div class="hero-circle">
@@ -177,8 +1036,7 @@
 
     </section>
 
-
-    <!-- ================= SEARCH SECTION ================= -->
+    <!-- ================= SEARCH ================= -->
 
     <section class="search-section">
 
@@ -204,7 +1062,6 @@
 
     </section>
 
-
     <!-- ================= CATEGORIES ================= -->
 
     <section class="categories-section" id="categories">
@@ -215,9 +1072,7 @@
 
                 <span>SHOP BY CATEGORY</span>
 
-                <h2>
-                    Explore Our Categories
-                </h2>
+                <h2>Explore Our Categories</h2>
 
                 <p>
                     Choose from our wide range of fresh vegetables.
@@ -225,15 +1080,12 @@
 
             </div>
 
-
             <div class="categories-grid">
 
                 <div class="category-card"
                     onclick="filterCategory('all')">
 
-                    <div class="category-icon">
-                        🥬
-                    </div>
+                    <div class="category-icon">🥬</div>
 
                     <h3>All Vegetables</h3>
 
@@ -241,13 +1093,10 @@
 
                 </div>
 
-
                 <div class="category-card"
                     onclick="filterCategory('leafy')">
 
-                    <div class="category-icon">
-                        🥬
-                    </div>
+                    <div class="category-icon">🥬</div>
 
                     <h3>Leafy Greens</h3>
 
@@ -255,13 +1104,10 @@
 
                 </div>
 
-
                 <div class="category-card"
                     onclick="filterCategory('root')">
 
-                    <div class="category-icon">
-                        🥕
-                    </div>
+                    <div class="category-icon">🥕</div>
 
                     <h3>Root Vegetables</h3>
 
@@ -269,13 +1115,10 @@
 
                 </div>
 
-
                 <div class="category-card"
                     onclick="filterCategory('fruit')">
 
-                    <div class="category-icon">
-                        🍅
-                    </div>
+                    <div class="category-icon">🍅</div>
 
                     <h3>Fruit Vegetables</h3>
 
@@ -289,7 +1132,6 @@
 
     </section>
 
-
     <!-- ================= PRODUCTS ================= -->
 
     <section class="products-section" id="products">
@@ -300,18 +1142,13 @@
 
                 <span>OUR PRODUCTS</span>
 
-                <h2>
-                    Fresh Vegetables
-                </h2>
+                <h2>Fresh Vegetables</h2>
 
                 <p>
                     Handpicked fresh vegetables at the best prices.
                 </p>
 
             </div>
-
-
-            <!-- Product Filter -->
 
             <div class="filter-buttons">
 
@@ -341,11 +1178,7 @@
 
             </div>
 
-
-            <!-- Product Grid -->
-
             <div class="products-grid" id="productsGrid">
-
 
                 <!-- TOMATO -->
 
@@ -354,6 +1187,7 @@
                     data-name="Tomato">
 
                     <div class="product-image">
+
                         <span class="product-emoji">🍅</span>
 
                         <span class="offer-badge">
@@ -363,6 +1197,7 @@
                         <button class="heart-btn">
                             ♡
                         </button>
+
                     </div>
 
                     <div class="product-info">
@@ -396,7 +1231,6 @@
 
                 </div>
 
-
                 <!-- POTATO -->
 
                 <div class="product-card"
@@ -404,11 +1238,13 @@
                     data-name="Potato">
 
                     <div class="product-image">
+
                         <span class="product-emoji">🥔</span>
 
                         <button class="heart-btn">
                             ♡
                         </button>
+
                     </div>
 
                     <div class="product-info">
@@ -442,7 +1278,6 @@
 
                 </div>
 
-
                 <!-- ONION -->
 
                 <div class="product-card"
@@ -450,6 +1285,7 @@
                     data-name="Onion">
 
                     <div class="product-image">
+
                         <span class="product-emoji">🧅</span>
 
                         <span class="offer-badge">
@@ -459,6 +1295,7 @@
                         <button class="heart-btn">
                             ♡
                         </button>
+
                     </div>
 
                     <div class="product-info">
@@ -492,7 +1329,6 @@
 
                 </div>
 
-
                 <!-- CARROT -->
 
                 <div class="product-card"
@@ -500,11 +1336,13 @@
                     data-name="Carrot">
 
                     <div class="product-image">
+
                         <span class="product-emoji">🥕</span>
 
                         <button class="heart-btn">
                             ♡
                         </button>
+
                     </div>
 
                     <div class="product-info">
@@ -538,7 +1376,6 @@
 
                 </div>
 
-
                 <!-- CABBAGE -->
 
                 <div class="product-card"
@@ -546,6 +1383,7 @@
                     data-name="Cabbage">
 
                     <div class="product-image">
+
                         <span class="product-emoji">🥬</span>
 
                         <span class="offer-badge">
@@ -555,6 +1393,7 @@
                         <button class="heart-btn">
                             ♡
                         </button>
+
                     </div>
 
                     <div class="product-info">
@@ -588,7 +1427,6 @@
 
                 </div>
 
-
                 <!-- SPINACH -->
 
                 <div class="product-card"
@@ -596,11 +1434,13 @@
                     data-name="Spinach">
 
                     <div class="product-image">
+
                         <span class="product-emoji">🌿</span>
 
                         <button class="heart-btn">
                             ♡
                         </button>
+
                     </div>
 
                     <div class="product-info">
@@ -634,7 +1474,6 @@
 
                 </div>
 
-
                 <!-- BRINJAL -->
 
                 <div class="product-card"
@@ -642,11 +1481,13 @@
                     data-name="Brinjal">
 
                     <div class="product-image">
+
                         <span class="product-emoji">🍆</span>
 
                         <button class="heart-btn">
                             ♡
                         </button>
+
                     </div>
 
                     <div class="product-info">
@@ -680,7 +1521,6 @@
 
                 </div>
 
-
                 <!-- CAULIFLOWER -->
 
                 <div class="product-card"
@@ -688,6 +1528,7 @@
                     data-name="Cauliflower">
 
                     <div class="product-image">
+
                         <span class="product-emoji">🥦</span>
 
                         <span class="offer-badge">
@@ -697,6 +1538,7 @@
                         <button class="heart-btn">
                             ♡
                         </button>
+
                     </div>
 
                     <div class="product-info">
@@ -730,8 +1572,561 @@
 
                 </div>
 
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+
+    <section class="about-section" id="about">
+
+        <div class="container">
+
+            <div class="about-content">
+
+                <h2>About FreshCart 🥬</h2>
+
+                <p>
+                    FreshCart is an online vegetable supermarket that
+                    provides fresh, healthy and quality vegetables
+                    directly to customers. We focus on freshness,
+                    affordable pricing and fast delivery.
+                </p>
 
             </div>
 
+        </div>
 
-            <!-- No Product
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+
+    <section class="contact-section" id="contact">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <span>GET IN TOUCH</span>
+
+                <h2>Contact Us</h2>
+
+                <p>
+                    Have a question? Send us a message.
+                </p>
+
+            </div>
+
+            <div class="contact-box">
+
+                <input
+                    type="text"
+                    id="contactName"
+                    placeholder="Your Name">
+
+                <input
+                    type="email"
+                    id="contactEmail"
+                    placeholder="Your Email">
+
+                <textarea
+                    id="contactMessage"
+                    placeholder="Your Message"></textarea>
+
+                <button onclick="sendMessage()">
+                    Send Message
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="container">
+
+            <div class="footer-content">
+
+                <div>
+                    <h3>🥬 FreshCart</h3>
+
+                    <p>
+                        Fresh vegetables delivered directly
+                        to your doorstep.
+                    </p>
+                </div>
+
+                <div>
+                    <h3>Quick Links</h3>
+
+                    <a href="#home">Home</a>
+                    <a href="#categories">Categories</a>
+                    <a href="#products">Vegetables</a>
+                    <a href="#about">About</a>
+                </div>
+
+                <div>
+                    <h3>Contact</h3>
+
+                    <p>📞 +91 98765 43210</p>
+                    <p>📧 freshcart@example.com</p>
+                    <p>📍 Tamil Nadu, India</p>
+                </div>
+
+            </div>
+
+            <div class="copyright">
+                © 2026 FreshCart. All Rights Reserved.
+            </div>
+
+        </div>
+
+    </footer>
+
+    <!-- ================= CART MODAL ================= -->
+
+    <div class="cart-modal" id="cartModal">
+
+        <div class="cart-box">
+
+            <div class="cart-header">
+
+                <h2>🛒 Your Cart</h2>
+
+                <button
+                    class="close-cart"
+                    onclick="closeCart()">
+                    ✕
+                </button>
+
+            </div>
+
+            <div id="cartItems"></div>
+
+            <div class="cart-total">
+
+                <span>Total</span>
+
+                <span id="cartTotal">
+                    ₹0
+                </span>
+
+            </div>
+
+            <button
+                class="checkout-btn"
+                onclick="checkout()">
+                Checkout
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        let cart = [];
+
+        /* ================= MOBILE MENU ================= */
+
+        function toggleMenu() {
+
+            const menu = document.getElementById("mobileMenu");
+
+            if (menu.style.display === "block") {
+                menu.style.display = "none";
+            } else {
+                menu.style.display = "block";
+            }
+
+        }
+
+        /* ================= SEARCH ================= */
+
+        function focusSearch() {
+
+            const searchInput =
+                document.getElementById("searchInput");
+
+            searchInput.focus();
+
+            window.scrollTo({
+                top: document.querySelector(".search-section").offsetTop - 70,
+                behavior: "smooth"
+            });
+
+        }
+
+        function searchProducts() {
+
+            const search =
+                document.getElementById("searchInput")
+                .value
+                .toLowerCase()
+                .trim();
+
+            const products =
+                document.querySelectorAll(".product-card");
+
+            products.forEach(product => {
+
+                const name =
+                    product.dataset.name.toLowerCase();
+
+                if (name.includes(search)) {
+                    product.style.display = "block";
+                } else {
+                    product.style.display = "none";
+                }
+
+            });
+
+        }
+
+        /* ================= FILTER ================= */
+
+        function filterCategory(category) {
+
+            const products =
+                document.querySelectorAll(".product-card");
+
+            const buttons =
+                document.querySelectorAll(".filter-btn");
+
+            buttons.forEach(button => {
+                button.classList.remove("active");
+            });
+
+            products.forEach(product => {
+
+                if (
+                    category === "all" ||
+                    product.dataset.category === category
+                ) {
+
+                    product.style.display = "block";
+
+                } else {
+
+                    product.style.display = "none";
+
+                }
+
+            });
+
+            buttons.forEach(button => {
+
+                if (
+                    button.innerText.toLowerCase() === category ||
+                    (category === "all" &&
+                    button.innerText.toLowerCase() === "all")
+                ) {
+
+                    button.classList.add("active");
+
+                }
+
+            });
+
+            document
+                .getElementById("products")
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+
+        }
+
+        /* ================= ADD TO CART ================= */
+
+        function addToCart(name, price, unit) {
+
+            const existingItem =
+                cart.find(item => item.name === name);
+
+            if (existingItem) {
+
+                existingItem.quantity++;
+
+            } else {
+
+                cart.push({
+                    name: name,
+                    price: price,
+                    unit: unit,
+                    quantity: 1
+                });
+
+            }
+
+            updateCart();
+
+            alert(name + " added to cart! 🛒");
+
+        }
+
+        /* ================= UPDATE CART ================= */
+
+        function updateCart() {
+
+            const cartCount =
+                document.getElementById("cartCount");
+
+            const cartItems =
+                document.getElementById("cartItems");
+
+            const cartTotal =
+                document.getElementById("cartTotal");
+
+            let totalItems = 0;
+            let totalPrice = 0;
+
+            cart.forEach(item => {
+
+                totalItems += item.quantity;
+
+                totalPrice +=
+                    item.price * item.quantity;
+
+            });
+
+            cartCount.innerText = totalItems;
+
+            if (cart.length === 0) {
+
+                cartItems.innerHTML = `
+                    <div class="empty-cart">
+                        Your cart is empty 🛒
+                    </div>
+                `;
+
+            } else {
+
+                cartItems.innerHTML = "";
+
+                cart.forEach((item, index) => {
+
+                    const div =
+                        document.createElement("div");
+
+                    div.className = "cart-item";
+
+                    div.innerHTML = `
+
+                        <div class="cart-item-info">
+
+                            <strong>
+                                ${item.name}
+                            </strong>
+
+                            <small>
+                                ₹${item.price} / ${item.unit}
+                                × ${item.quantity}
+                            </small>
+
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                ₹${item.price * item.quantity}
+                            </strong>
+
+                            <button
+                                class="remove-btn"
+                                onclick="removeFromCart(${index})">
+                                Remove
+                            </button>
+
+                        </div>
+
+                    `;
+
+                    cartItems.appendChild(div);
+
+                });
+
+            }
+
+            cartTotal.innerText =
+                "₹" + totalPrice;
+
+        }
+
+        /* ================= REMOVE CART ================= */
+
+        function removeFromCart(index) {
+
+            cart.splice(index, 1);
+
+            updateCart();
+
+        }
+
+        /* ================= OPEN CART ================= */
+
+        function openCart() {
+
+            const modal =
+                document.getElementById("cartModal");
+
+            modal.style.display = "flex";
+
+            updateCart();
+
+        }
+
+        /* ================= CLOSE CART ================= */
+
+        function closeCart() {
+
+            document.getElementById("cartModal")
+                .style.display = "none";
+
+        }
+
+        /* ================= CHECKOUT ================= */
+
+        function checkout() {
+
+            if (cart.length === 0) {
+
+                alert("Your cart is empty!");
+
+                return;
+            }
+
+            let message =
+                "Hello FreshCart! I want to order:%0A%0A";
+
+            let total = 0;
+
+            cart.forEach(item => {
+
+                const itemTotal =
+                    item.price * item.quantity;
+
+                total += itemTotal;
+
+                message +=
+                    item.name +
+                    " - " +
+                    item.quantity +
+                    " " +
+                    item.unit +
+                    " - ₹" +
+                    itemTotal +
+                    "%0A";
+
+            });
+
+            message +=
+                "%0ATotal: ₹" +
+                total;
+
+            /*
+                Replace this number with your
+                WhatsApp business number.
+            */
+
+            const phone =
+                "919876543210";
+
+            window.open(
+                "https://wa.me/" +
+                phone +
+                "?text=" +
+                message,
+                "_blank"
+            );
+
+        }
+
+        /* ================= CONTACT ================= */
+
+        function sendMessage() {
+
+            const name =
+                document.getElementById("contactName").value;
+
+            const email =
+                document.getElementById("contactEmail").value;
+
+            const message =
+                document.getElementById("contactMessage").value;
+
+            if (
+                name === "" ||
+                email === "" ||
+                message === ""
+            ) {
+
+                alert("Please fill all fields.");
+
+                return;
+
+            }
+
+            alert(
+                "Thank you " +
+                name +
+                "! Your message has been received."
+            );
+
+            document.getElementById("contactName").value = "";
+            document.getElementById("contactEmail").value = "";
+            document.getElementById("contactMessage").value = "";
+
+        }
+
+        /* ================= HEART BUTTON ================= */
+
+        document
+            .querySelectorAll(".heart-btn")
+            .forEach(button => {
+
+                button.addEventListener("click", function () {
+
+                    if (this.innerText === "♡") {
+
+                        this.innerText = "♥";
+                        this.style.color = "#ff4d4d";
+
+                    } else {
+
+                        this.innerText = "♡";
+                        this.style.color = "#555";
+
+                    }
+
+                });
+
+            });
+
+        /* ================= CLOSE MODAL ================= */
+
+        document
+            .getElementById("cartModal")
+            .addEventListener("click", function(event) {
+
+                if (event.target === this) {
+                    closeCart();
+                }
+
+            });
+
+        /* ================= INITIAL CART ================= */
+
+        updateCart();
+
+    </script>
+
+</body>
+</html>
