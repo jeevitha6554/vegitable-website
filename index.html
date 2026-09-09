@@ -4,16 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>FreshCart | Fresh Vegetables</title>
+<title>FreshCart | Fresh & Healthy Vegetables</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
 <style>
-/* =========================================================
-   RESET
-========================================================= */
+
+/* =========================
+   BASIC
+========================= */
 
 *{
     margin:0;
@@ -27,19 +28,9 @@ html{
 
 body{
     font-family:"DM Sans",sans-serif;
-    background:#edf3e8;
-    color:#17231a;
+    background:#07130b;
+    color:white;
     overflow-x:hidden;
-}
-
-img{
-    display:block;
-    width:100%;
-}
-
-button{
-    font-family:inherit;
-    cursor:pointer;
 }
 
 a{
@@ -47,1873 +38,1617 @@ a{
     color:inherit;
 }
 
-/* =========================================================
-   BACKGROUND ANIMATION
-========================================================= */
-
-.bg-circle{
-    position:fixed;
-    border-radius:50%;
-    filter:blur(80px);
-    pointer-events:none;
-    z-index:-1;
+button,
+input{
+    font-family:inherit;
 }
 
-.bg-one{
-    width:350px;
-    height:350px;
-    background:#a7d49c;
-    top:5%;
-    left:-180px;
-    opacity:.35;
-    animation:floatOne 10s infinite alternate ease-in-out;
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    height:100vh;
+    min-height:650px;
+    position:relative;
+    overflow:hidden;
+    isolation:isolate;
 }
 
-.bg-two{
-    width:300px;
-    height:300px;
-    background:#d5df8d;
-    right:-150px;
-    top:55%;
-    opacity:.28;
-    animation:floatTwo 12s infinite alternate ease-in-out;
+
+/* =========================
+   ONLY IMAGE ZOOM
+========================= */
+
+.hero-image{
+    position:absolute;
+    inset:0;
+    z-index:-3;
+
+    background-image:url("https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=2000&q=95");
+
+    background-size:cover;
+    background-position:center;
+
+    animation:imageZoom 12s ease-in-out infinite alternate;
+
+    will-change:transform;
 }
 
-@keyframes floatOne{
-    from{transform:translate(0,0);}
-    to{transform:translate(80px,100px);}
-}
 
-@keyframes floatTwo{
-    from{transform:translate(0,0);}
-    to{transform:translate(-80px,-80px);}
-}
+/*
+   IMPORTANT:
+   Only .hero-image is animated.
+   So text/navbar/buttons won't zoom.
+*/
 
-/* =========================================================
-   HEADER
-========================================================= */
+@keyframes imageZoom{
 
-header{
-    position:sticky;
-    top:0;
-    z-index:1000;
-    background:rgba(245,249,241,.78);
-    backdrop-filter:blur(18px);
-    border-bottom:1px solid rgba(40,80,40,.08);
-    animation:headerDown .7s ease;
-}
-
-@keyframes headerDown{
-    from{
-        opacity:0;
-        transform:translateY(-30px);
+    0%{
+        transform:scale(1);
     }
-    to{
-        opacity:1;
-        transform:translateY(0);
+
+    100%{
+        transform:scale(1.10);
     }
+
 }
+
+
+/* =========================
+   IMAGE DARK OVERLAY
+========================= */
+
+.hero-image::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(3,12,7,.92) 0%,
+            rgba(3,12,7,.72) 35%,
+            rgba(3,12,7,.20) 75%,
+            rgba(3,12,7,.12) 100%
+        ),
+
+        linear-gradient(
+            0deg,
+            rgba(0,0,0,.55),
+            transparent 50%
+        );
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
 
 .navbar{
-    width:90%;
-    max-width:1250px;
+    width:92%;
+    max-width:1400px;
+    height:80px;
+
     margin:auto;
-    height:76px;
+
     display:flex;
-    justify-content:space-between;
     align-items:center;
+    justify-content:space-between;
+
+    position:relative;
+    z-index:10;
+
+    border-bottom:1px solid rgba(255,255,255,.18);
 }
+
 
 .logo{
-    font-size:25px;
-    font-weight:700;
-    letter-spacing:-1px;
+    display:flex;
+    align-items:center;
+    gap:10px;
 }
 
-.logo span{
-    color:#2e8b43;
+
+.logo-icon{
+    width:40px;
+    height:40px;
+
+    border-radius:12px;
+
+    display:grid;
+    place-items:center;
+
+    background:linear-gradient(
+        135deg,
+        #c6fa75,
+        #43a944
+    );
+
+    font-size:21px;
+
+    box-shadow:
+        0 8px 25px rgba(95,200,75,.25);
 }
+
+
+.logo-text{
+    font-size:21px;
+    font-weight:700;
+}
+
+
+.logo-text span{
+    color:#a9ef62;
+}
+
+
+.logo small{
+    display:block;
+    font-size:8px;
+    letter-spacing:1.5px;
+    color:#bac6bc;
+    margin-top:2px;
+}
+
 
 .nav-links{
     display:flex;
-    gap:34px;
+    gap:32px;
 }
 
+
 .nav-links a{
-    font-size:14px;
-    color:#435046;
+    color:#e1e8e2;
+    font-size:12px;
     position:relative;
 }
 
+
 .nav-links a::after{
     content:"";
+
     position:absolute;
+
+    left:0;
+    bottom:-9px;
+
     width:0;
     height:2px;
-    left:0;
-    bottom:-7px;
-    background:#319449;
+
+    background:#a9ef62;
+
     transition:.3s;
 }
 
+
 .nav-links a:hover{
-    color:#25823a;
+    color:#a9ef62;
 }
+
 
 .nav-links a:hover::after{
     width:100%;
 }
 
-.nav-actions{
+
+/* =========================
+   NAV RIGHT
+========================= */
+
+.nav-right{
     display:flex;
+    align-items:center;
     gap:10px;
 }
 
-.icon-btn{
-    width:42px;
-    height:42px;
-    border:0;
-    border-radius:50%;
-    background:#fff;
-    box-shadow:0 6px 20px rgba(30,60,30,.08);
-    transition:.3s;
-}
-
-.icon-btn:hover{
-    transform:translateY(-3px) scale(1.05);
-}
-
-.cart-count{
-    position:absolute;
-    background:#ef4949;
-    color:#fff;
-    font-size:10px;
-    width:18px;
-    height:18px;
-    border-radius:50%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    top:-4px;
-    right:-4px;
-}
-
-/* =========================================================
-   HERO
-========================================================= */
-
-.hero{
-    min-height:680px;
-    display:flex;
-    align-items:center;
-    padding:70px 0;
-}
-
-.hero-container{
-    width:90%;
-    max-width:1250px;
-    margin:auto;
-    display:grid;
-    grid-template-columns:45% 55%;
-    align-items:center;
-    gap:20px;
-}
-
-.hero-content{
-    animation:heroText 1s .2s both;
-}
-
-@keyframes heroText{
-    from{
-        opacity:0;
-        transform:translateY(35px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-.badge{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    padding:9px 15px;
-    border-radius:50px;
-    background:rgba(255,255,255,.65);
-    border:1px solid rgba(40,100,45,.12);
-    color:#2c8040;
-    font-size:11px;
-    font-weight:700;
-    letter-spacing:1px;
-    margin-bottom:20px;
-}
-
-.badge i{
-    width:7px;
-    height:7px;
-    background:#43ad55;
-    border-radius:50%;
-    animation:pulse 1.6s infinite;
-}
-
-@keyframes pulse{
-    0%,100%{
-        box-shadow:0 0 0 0 rgba(67,173,85,.5);
-    }
-    50%{
-        box-shadow:0 0 0 8px rgba(67,173,85,0);
-    }
-}
-
-.hero h1{
-    font-family:"Playfair Display",serif;
-    font-size:67px;
-    line-height:1.02;
-    letter-spacing:-2px;
-    margin-bottom:22px;
-}
-
-.hero h1 span{
-    color:#318b43;
-    position:relative;
-}
-
-.hero h1 span::after{
-    content:"";
-    position:absolute;
-    width:100%;
-    height:8px;
-    background:#c9e5ae;
-    left:0;
-    bottom:1px;
-    z-index:-1;
-    border-radius:50%;
-}
-
-.hero p{
-    max-width:520px;
-    color:#69756b;
-    font-size:15px;
-    line-height:1.8;
-}
-
-.hero-buttons{
-    display:flex;
-    gap:14px;
-    margin-top:30px;
-}
-
-.primary{
-    padding:14px 25px;
-    border:0;
-    border-radius:12px;
-    background:#277d39;
-    color:#fff;
-    font-weight:600;
-    box-shadow:0 12px 25px rgba(39,125,57,.20);
-    transition:.35s;
-}
-
-.primary:hover{
-    transform:translateY(-4px);
-    box-shadow:0 18px 30px rgba(39,125,57,.30);
-}
-
-.secondary{
-    padding:14px 25px;
-    border:1px solid rgba(40,100,45,.20);
-    border-radius:12px;
-    background:rgba(255,255,255,.55);
-    color:#276b35;
-    font-weight:600;
-    transition:.35s;
-}
-
-.secondary:hover{
-    background:#fff;
-    transform:translateY(-4px);
-}
-
-.hero-info{
-    display:flex;
-    gap:28px;
-    margin-top:35px;
-}
-
-.hero-info strong{
-    display:block;
-    font-size:14px;
-}
-
-.hero-info small{
-    color:#7d897f;
-    font-size:11px;
-}
-
-/* =========================================================
-   HERO VEGETABLE VISUAL
-========================================================= */
-
-.hero-visual{
-    position:relative;
-    height:560px;
-    animation:heroVisual 1.1s .25s both;
-}
-
-@keyframes heroVisual{
-    from{
-        opacity:0;
-        transform:translateX(50px) scale(.94);
-    }
-    to{
-        opacity:1;
-        transform:translateX(0) scale(1);
-    }
-}
-
-.hero-image{
-    position:absolute;
-    width:520px;
-    height:520px;
-    right:0;
-    top:10px;
-    border-radius:50%;
-    overflow:hidden;
-    box-shadow:
-        0 35px 80px rgba(36,68,39,.22),
-        0 0 0 18px rgba(255,255,255,.25);
-    animation:heroFloat 5s infinite ease-in-out;
-}
-
-@keyframes heroFloat{
-    0%,100%{
-        transform:translateY(0);
-    }
-    50%{
-        transform:translateY(-12px);
-    }
-}
-
-.hero-image img{
-    height:100%;
-    object-fit:cover;
-    transition:transform 1.2s cubic-bezier(.2,.8,.2,1);
-}
-
-.hero-image:hover img{
-    transform:scale(1.13);
-}
-
-/* water droplets */
-.drops{
-    position:absolute;
-    inset:0;
-    pointer-events:none;
-    z-index:4;
-}
-
-.drop{
-    position:absolute;
-    width:18px;
-    height:25px;
-    border-radius:60% 40% 65% 35%;
-    background:linear-gradient(
-        135deg,
-        rgba(255,255,255,.9),
-        rgba(190,230,245,.28)
-    );
-    box-shadow:
-        inset 2px 2px 3px rgba(255,255,255,.95),
-        0 2px 7px rgba(20,60,30,.18);
-    backdrop-filter:blur(2px);
-    animation:dropMove 3s infinite ease-in-out;
-}
-
-.drop:nth-child(1){
-    left:18%;
-    top:22%;
-}
-
-.drop:nth-child(2){
-    left:38%;
-    top:65%;
-    width:13px;
-    height:19px;
-    animation-delay:.7s;
-}
-
-.drop:nth-child(3){
-    left:64%;
-    top:27%;
-    width:14px;
-    height:20px;
-    animation-delay:1.2s;
-}
-
-.drop:nth-child(4){
-    left:77%;
-    top:58%;
-    width:20px;
-    height:27px;
-    animation-delay:1.8s;
-}
-
-.drop:nth-child(5){
-    left:51%;
-    top:45%;
-    width:9px;
-    height:14px;
-    animation-delay:2.2s;
-}
-
-@keyframes dropMove{
-    0%,100%{
-        transform:translateY(0) scale(1);
-        opacity:.75;
-    }
-    50%{
-        transform:translateY(-5px) scale(1.08);
-        opacity:1;
-    }
-}
-
-.floating-label{
-    position:absolute;
-    z-index:5;
-    right:30px;
-    bottom:75px;
-    padding:13px 17px;
-    background:rgba(255,255,255,.75);
-    backdrop-filter:blur(14px);
-    border:1px solid rgba(255,255,255,.8);
-    border-radius:16px;
-    box-shadow:0 15px 35px rgba(20,50,25,.14);
-    animation:labelFloat 4s infinite ease-in-out;
-}
-
-@keyframes labelFloat{
-    0%,100%{transform:translateY(0);}
-    50%{transform:translateY(-8px);}
-}
-
-.floating-label strong{
-    font-size:13px;
-    color:#1f6330;
-}
-
-.floating-label small{
-    display:block;
-    color:#7c877e;
-    margin-top:3px;
-}
-
-/* =========================================================
-   SEARCH
-========================================================= */
-
-.search-section{
-    padding:25px 0;
-    background:#17321d;
-}
 
 .search{
-    width:90%;
-    max-width:800px;
-    margin:auto;
+    width:220px;
+    height:40px;
+
+    border-radius:30px;
+
     display:flex;
-    background:rgba(255,255,255,.09);
-    border:1px solid rgba(255,255,255,.15);
-    border-radius:16px;
-    overflow:hidden;
+    align-items:center;
+
+    padding:0 14px;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.25);
+
     backdrop-filter:blur(12px);
 }
 
+
 .search span{
-    padding:15px;
-    color:#cfe5d1;
+    margin-right:8px;
 }
+
 
 .search input{
-    flex:1;
+    width:100%;
+
+    background:none;
     border:0;
     outline:0;
-    background:transparent;
-    color:#fff;
-    font-size:14px;
+
+    color:white;
+
+    font-size:11px;
 }
+
 
 .search input::placeholder{
-    color:#a8baa9;
+    color:#c7d0c9;
 }
 
-.search button{
-    border:0;
-    padding:0 25px;
-    background:#65b85e;
-    color:#fff;
-    font-weight:700;
-}
 
-/* =========================================================
-   SECTIONS
-========================================================= */
+.icon-btn{
+    width:40px;
+    height:40px;
 
-.section{
-    width:90%;
-    max-width:1250px;
-    margin:auto;
-    padding:90px 0;
-}
-
-.heading{
-    text-align:center;
-    margin-bottom:50px;
-}
-
-.heading small{
-    color:#38934a;
-    font-weight:700;
-    letter-spacing:2px;
-    font-size:11px;
-}
-
-.heading h2{
-    font-family:"Playfair Display",serif;
-    font-size:43px;
-    margin:8px 0;
-}
-
-.heading p{
-    color:#778278;
-    font-size:14px;
-}
-
-/* =========================================================
-   CATEGORY
-========================================================= */
-
-.categories{
-    display:flex;
-    justify-content:center;
-    gap:35px;
-    flex-wrap:wrap;
-}
-
-.category{
-    text-align:center;
-    cursor:pointer;
-    transition:.4s;
-}
-
-.category:hover{
-    transform:translateY(-10px);
-}
-
-.category-image{
-    width:120px;
-    height:120px;
     border-radius:50%;
-    overflow:hidden;
-    margin:auto;
-    box-shadow:0 14px 30px rgba(35,65,37,.14);
-    border:7px solid rgba(255,255,255,.6);
-}
 
-.category-image img{
-    height:100%;
-    object-fit:cover;
-    transition:.6s;
-}
+    border:1px solid rgba(255,255,255,.25);
 
-.category:hover img{
-    transform:scale(1.15) rotate(3deg);
-}
+    background:rgba(255,255,255,.08);
 
-.category h3{
-    margin-top:13px;
-    font-size:14px;
-}
+    color:white;
 
-.category p{
-    color:#7c877e;
-    font-size:11px;
-}
+    cursor:pointer;
 
-/* =========================================================
-   FILTER
-========================================================= */
-
-.filters{
-    display:flex;
-    justify-content:center;
-    gap:10px;
-    flex-wrap:wrap;
-    margin-bottom:40px;
-}
-
-.filter{
-    border:1px solid #cbdac9;
-    background:rgba(255,255,255,.45);
-    padding:9px 18px;
-    border-radius:30px;
-    color:#4d5d50;
     transition:.3s;
 }
 
-.filter:hover,
-.filter.active{
-    background:#2c8640;
-    color:#fff;
-    border-color:#2c8640;
-    transform:translateY(-2px);
+
+.icon-btn:hover{
+    color:#a9ef62;
+    border-color:#a9ef62;
+    transform:translateY(-3px);
 }
 
-/* =========================================================
-   PRODUCT DISPLAY
-========================================================= */
+
+/* =========================
+   HERO CONTENT
+========================= */
+
+.hero-content{
+    width:92%;
+    max-width:1400px;
+
+    height:calc(100vh - 80px);
+
+    margin:auto;
+
+    display:flex;
+    align-items:center;
+
+    position:relative;
+    z-index:5;
+}
+
+
+.content{
+    max-width:650px;
+
+    animation:contentAppear 1s ease both;
+}
+
+
+@keyframes contentAppear{
+
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+
+/* =========================
+   TITLE
+========================= */
+
+.subtitle{
+    color:#a9ef62;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:20px;
+
+    font-style:italic;
+
+    margin-bottom:12px;
+}
+
+
+h1{
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(55px,6.5vw,92px);
+
+    line-height:.92;
+
+    letter-spacing:-3px;
+
+    margin-bottom:25px;
+}
+
+
+h1 span{
+    color:#a9ef62;
+}
+
+
+.description{
+    max-width:520px;
+
+    color:#d1dad3;
+
+    font-size:15px;
+
+    line-height:1.8;
+}
+
+
+.tags{
+    display:flex;
+
+    gap:15px;
+
+    margin-top:18px;
+
+    font-size:12px;
+
+    color:#edf5ef;
+}
+
+
+.tags span:not(:last-child)::after{
+    content:"•";
+
+    margin-left:15px;
+
+    color:#a9ef62;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.buttons{
+    display:flex;
+
+    gap:12px;
+
+    margin-top:30px;
+}
+
+
+.primary{
+    padding:14px 25px;
+
+    border:0;
+
+    border-radius:11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #c1f66d,
+            #55c34b
+        );
+
+    color:#09200c;
+
+    font-weight:700;
+
+    font-size:13px;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 12px 30px
+        rgba(89,200,70,.25);
+
+    transition:.35s;
+}
+
+
+.primary:hover{
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 18px 35px
+        rgba(89,200,70,.35);
+}
+
+
+.secondary{
+    padding:14px 24px;
+
+    border-radius:11px;
+
+    border:1px solid
+        rgba(255,255,255,.3);
+
+    background:
+        rgba(255,255,255,.07);
+
+    color:white;
+
+    font-weight:600;
+
+    font-size:13px;
+
+    backdrop-filter:blur(10px);
+
+    transition:.35s;
+}
+
+
+.secondary:hover{
+    background:
+        rgba(255,255,255,.14);
+
+    transform:translateY(-4px);
+}
+
+
+/* =========================
+   FEATURES
+========================= */
+
+.features{
+    display:flex;
+
+    margin-top:40px;
+}
+
+
+.feature{
+    padding-right:25px;
+
+    margin-right:25px;
+
+    border-right:
+        1px solid
+        rgba(255,255,255,.2);
+}
+
+
+.feature:last-child{
+    border:0;
+}
+
+
+.feature strong{
+    display:block;
+
+    font-size:12px;
+}
+
+
+.feature small{
+    color:#aab7ad;
+
+    font-size:10px;
+}
+
+
+/* =========================
+   DISCOUNT
+========================= */
+
+.discount{
+    position:absolute;
+
+    right:5%;
+    top:18%;
+
+    width:75px;
+    height:75px;
+
+    border-radius:50%;
+
+    display:grid;
+    place-items:center;
+
+    text-align:center;
+
+    background:
+        rgba(105,190,70,.9);
+
+    color:white;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    z-index:7;
+
+    animation:
+        discountFloat
+        4s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes discountFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:
+            translateY(-8px)
+            rotate(5deg);
+    }
+
+}
+
+
+/* =========================
+   WATER DROPS
+========================= */
+
+.water-drop{
+    position:absolute;
+
+    z-index:4;
+
+    width:18px;
+    height:25px;
+
+    border-radius:
+        60% 40% 65% 35%;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.95),
+            rgba(180,225,240,.25)
+        );
+
+    box-shadow:
+        inset 2px 2px 4px
+        rgba(255,255,255,.95),
+
+        0 3px 8px
+        rgba(0,0,0,.25);
+
+    animation:
+        dropFloat
+        3s
+        ease-in-out
+        infinite;
+}
+
+
+.drop1{
+    left:68%;
+    top:38%;
+}
+
+
+.drop2{
+    left:78%;
+    top:48%;
+
+    width:13px;
+    height:19px;
+
+    animation-delay:.7s;
+}
+
+
+.drop3{
+    left:87%;
+    top:35%;
+
+    width:16px;
+    height:23px;
+
+    animation-delay:1.3s;
+}
+
+
+@keyframes dropFloat{
+
+    0%,100%{
+        transform:
+            translateY(0)
+            scale(1);
+
+        opacity:.7;
+    }
+
+    50%{
+        transform:
+            translateY(-6px)
+            scale(1.08);
+
+        opacity:1;
+    }
+
+}
+
+
+/* =========================
+   ORDER FLOAT
+========================= */
+
+.order{
+    position:absolute;
+
+    right:5%;
+    bottom:40px;
+
+    z-index:8;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:11px 18px;
+
+    border-radius:30px;
+
+    background:
+        rgba(8,30,13,.75);
+
+    border:
+        1px solid
+        rgba(169,239,98,.45);
+
+    backdrop-filter:blur(14px);
+
+    font-size:11px;
+
+    animation:
+        orderFloat
+        4s
+        ease-in-out
+        infinite;
+}
+
+
+.whatsapp{
+    width:29px;
+    height:29px;
+
+    border-radius:50%;
+
+    display:grid;
+    place-items:center;
+
+    background:#48c966;
+}
+
+
+@keyframes orderFloat{
+
+    50%{
+        transform:translateY(-7px);
+    }
+
+}
+
+
+/* =========================
+   SCROLL
+========================= */
+
+.scroll{
+    position:absolute;
+
+    bottom:25px;
+    left:0;
+
+    display:flex;
+    align-items:center;
+
+    gap:9px;
+
+    color:#bbc5bd;
+
+    font-size:9px;
+
+    letter-spacing:1px;
+}
+
+
+.mouse{
+    width:17px;
+    height:26px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.6);
+
+    border-radius:12px;
+
+    position:relative;
+}
+
+
+.mouse::after{
+    content:"";
+
+    position:absolute;
+
+    width:3px;
+    height:6px;
+
+    border-radius:4px;
+
+    background:#a9ef62;
+
+    left:50%;
+    top:5px;
+
+    transform:translateX(-50%);
+
+    animation:
+        mouseScroll
+        1.5s
+        infinite;
+}
+
+
+@keyframes mouseScroll{
+
+    to{
+        top:15px;
+        opacity:0;
+    }
+
+}
+
+
+/* =========================
+   SHOP SECTION
+========================= */
+
+.shop{
+    background:#f2f6ee;
+
+    color:#17231a;
+
+    padding:90px 6%;
+}
+
+
+.section-title{
+    text-align:center;
+
+    margin-bottom:45px;
+}
+
+
+.section-title small{
+    color:#348b43;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    font-size:10px;
+}
+
+
+.section-title h2{
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:45px;
+
+    margin:8px 0;
+}
+
+
+.section-title p{
+    color:#748077;
+
+    font-size:13px;
+}
+
+
+/* =========================
+   PRODUCT CARDS
+========================= */
 
 .products{
+    max-width:1200px;
+
+    margin:auto;
+
     display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:35px 25px;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:25px;
 }
 
+
 .product{
-    position:relative;
-    transition:.5s;
+    transition:.4s;
 }
+
 
 .product:hover{
     transform:translateY(-8px);
 }
 
-.product-photo{
-    height:300px;
-    border-radius:30px;
+
+.product-image{
+    height:280px;
+
     overflow:hidden;
-    position:relative;
-    background:#dce8d7;
-    box-shadow:0 18px 35px rgba(35,65,37,.12);
+
+    border-radius:25px;
+
+    box-shadow:
+        0 18px 35px
+        rgba(25,55,28,.13);
 }
 
-.product-photo img{
+
+.product-image img{
+    width:100%;
     height:100%;
+
     object-fit:cover;
+
     transition:
-        transform .8s cubic-bezier(.2,.8,.2,1),
-        filter .5s;
+        transform .8s
+        cubic-bezier(.2,.8,.2,1);
 }
 
-.product:hover .product-photo img{
-    transform:scale(1.18);
-    filter:saturate(1.18) contrast(1.06);
+
+.product:hover img{
+    transform:scale(1.15);
 }
 
-/* water effect */
-.product-photo::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    z-index:2;
-    pointer-events:none;
-    background:
-        radial-gradient(
-            ellipse 9px 14px at 15% 25%,
-            rgba(255,255,255,.9) 0 12%,
-            rgba(210,240,250,.4) 27%,
-            transparent 55%
-        ),
-        radial-gradient(
-            ellipse 7px 11px at 31% 72%,
-            rgba(255,255,255,.85) 0 12%,
-            rgba(210,240,250,.35) 28%,
-            transparent 55%
-        ),
-        radial-gradient(
-            ellipse 10px 15px at 55% 29%,
-            rgba(255,255,255,.9) 0 12%,
-            rgba(210,240,250,.35) 28%,
-            transparent 55%
-        ),
-        radial-gradient(
-            ellipse 8px 12px at 77% 67%,
-            rgba(255,255,255,.88) 0 12%,
-            rgba(210,240,250,.35) 28%,
-            transparent 55%
-        );
-    mix-blend-mode:screen;
-    animation:dropsGlow 3s infinite alternate;
-}
-
-@keyframes dropsGlow{
-    from{opacity:.55;}
-    to{opacity:1;}
-}
-
-/* moving reflection */
-.product-photo::after{
-    content:"";
-    position:absolute;
-    width:40%;
-    height:180%;
-    top:-40%;
-    left:-100%;
-    z-index:3;
-    background:linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,.28),
-        transparent
-    );
-    transform:rotate(20deg);
-}
-
-.product:hover .product-photo::after{
-    animation:shine .8s ease;
-}
-
-@keyframes shine{
-    from{left:-100%;}
-    to{left:140%;}
-}
 
 .product-info{
-    padding:15px 5px;
+    padding:14px 3px;
 }
 
-.product-category{
-    color:#479551;
-    font-size:10px;
-    font-weight:700;
+
+.product-info small{
+    color:#3d904c;
+
+    font-size:9px;
+
     letter-spacing:1px;
+
+    font-weight:700;
+
     text-transform:uppercase;
 }
 
+
 .product-info h3{
-    font-size:19px;
+    font-size:18px;
+
     margin:5px 0;
 }
 
+
 .product-info p{
-    font-size:12px;
-    color:#7d877e;
+    color:#7a857c;
+
+    font-size:11px;
 }
+
 
 .product-bottom{
     display:flex;
-    justify-content:space-between;
+
     align-items:center;
+
+    justify-content:space-between;
+
     margin-top:12px;
 }
 
+
 .price{
-    font-size:18px;
     font-weight:700;
 }
+
 
 .add{
     border:0;
-    background:#277d39;
-    color:#fff;
-    padding:9px 15px;
+
     border-radius:9px;
+
+    padding:9px 14px;
+
+    background:#277d39;
+
+    color:white;
+
     font-size:11px;
+
     font-weight:700;
+
+    cursor:pointer;
+
     transition:.3s;
 }
+
 
 .add:hover{
     transform:scale(1.06);
-    box-shadow:0 8px 20px rgba(39,125,57,.25);
 }
 
-.heart{
-    position:absolute;
-    right:13px;
-    top:13px;
-    z-index:5;
-    width:40px;
-    height:40px;
-    border:0;
-    border-radius:50%;
-    background:rgba(255,255,255,.88);
-    font-size:19px;
-    transition:.3s;
-}
 
-.heart:hover{
-    transform:scale(1.12);
-    color:#e84b4b;
-}
+/* =========================
+   FOOTER
+========================= */
 
-/* =========================================================
-   ABOUT
-========================================================= */
+footer{
+    background:#07130b;
 
-.about{
-    background:#17351e;
-    color:#fff;
-}
+    color:#8f9d93;
 
-.about-inner{
-    width:90%;
-    max-width:900px;
-    margin:auto;
     text-align:center;
+
+    padding:35px;
+
+    font-size:11px;
 }
 
-.about h2{
-    font-family:"Playfair Display",serif;
-    font-size:45px;
-    margin-bottom:20px;
-}
 
-.about p{
-    color:#c2d2c5;
-    line-height:1.9;
-    font-size:14px;
-}
-
-/* =========================================================
-   CART
-========================================================= */
-
-.cart-panel{
-    position:fixed;
-    top:0;
-    right:-430px;
-    width:400px;
-    max-width:90%;
-    height:100vh;
-    background:#fff;
-    z-index:3000;
-    box-shadow:-20px 0 60px rgba(0,0,0,.15);
-    padding:25px;
-    transition:.5s cubic-bezier(.2,.8,.2,1);
-}
-
-.cart-panel.open{
-    right:0;
-}
-
-.cart-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:25px;
-}
-
-.close{
-    width:35px;
-    height:35px;
-    border:0;
-    border-radius:50%;
-    background:#edf2eb;
-}
-
-.cart-item{
-    display:flex;
-    justify-content:space-between;
-    padding:14px 0;
-    border-bottom:1px solid #edf0ec;
-}
-
-.cart-total{
-    display:flex;
-    justify-content:space-between;
-    margin-top:25px;
-    font-size:20px;
-    font-weight:700;
-}
-
-.checkout{
-    width:100%;
-    margin-top:20px;
-    padding:14px;
-    border:0;
-    border-radius:10px;
-    background:#277d39;
-    color:#fff;
-    font-weight:700;
-}
-
-/* =========================================================
-   SCROLL REVEAL
-========================================================= */
-
-.reveal{
-    opacity:0;
-    transform:translateY(35px);
-    transition:1s ease;
-}
-
-.reveal.show{
-    opacity:1;
-    transform:translateY(0);
-}
-
-/* =========================================================
+/* =========================
    RESPONSIVE
-========================================================= */
+========================= */
 
 @media(max-width:1000px){
-
-    .hero-container{
-        grid-template-columns:1fr;
-        text-align:center;
-    }
-
-    .hero p{
-        margin:auto;
-    }
-
-    .hero-buttons,
-    .hero-info{
-        justify-content:center;
-    }
-
-    .hero-visual{
-        height:500px;
-    }
-
-    .hero-image{
-        left:50%;
-        transform:translateX(-50%);
-    }
-
-    .products{
-        grid-template-columns:repeat(2,1fr);
-    }
-}
-
-@media(max-width:700px){
 
     .nav-links{
         display:none;
     }
 
+    .search{
+        width:180px;
+    }
+
+    .products{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+}
+
+
+@media(max-width:650px){
+
     .hero{
-        padding:55px 0;
+        min-height:800px;
     }
 
-    .hero h1{
-        font-size:47px;
+    .navbar{
+        height:70px;
     }
 
-    .hero-visual{
-        height:390px;
+    .search{
+        display:none;
     }
 
-    .hero-image{
-        width:350px;
-        height:350px;
+    .hero-content{
+        height:calc(100vh - 70px);
+
+        align-items:center;
+    }
+
+    h1{
+        font-size:50px;
+
+        letter-spacing:-2px;
+    }
+
+    .description{
+        font-size:13px;
+    }
+
+    .features{
+        flex-wrap:wrap;
+
+        gap:15px;
+    }
+
+    .feature{
+        margin:0;
+        padding-right:15px;
+    }
+
+    .discount{
+        width:62px;
+        height:62px;
+
+        top:20%;
+        right:5%;
+
+        font-size:10px;
+    }
+
+    .order{
+        right:5%;
+        bottom:20px;
     }
 
     .products{
         grid-template-columns:1fr;
     }
 
-    .product-photo{
-        height:330px;
+    .product-image{
+        height:320px;
     }
 
-    .heading h2{
-        font-size:35px;
-    }
 }
 
-@media(max-width:450px){
 
-    .hero h1{
-        font-size:39px;
-    }
-
-    .hero-info{
-        gap:15px;
-    }
-
-    .hero-image{
-        width:290px;
-        height:290px;
-    }
-
-    .hero-visual{
-        height:330px;
-    }
-
-    .floating-label{
-        right:0;
-        bottom:30px;
-    }
-
-    .categories{
-        gap:22px;
-    }
-}
 </style>
 </head>
 
+
 <body>
-
-<div class="bg-circle bg-one"></div>
-<div class="bg-circle bg-two"></div>
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
-<header>
-
-<div class="navbar">
-
-<div class="logo">
-🥬 Fresh<span>Cart</span>
-</div>
-
-<nav class="nav-links">
-<a href="#home">Home</a>
-<a href="#categories">Categories</a>
-<a href="#products">Vegetables</a>
-<a href="#about">About</a>
-</nav>
-
-<div class="nav-actions">
-
-<button class="icon-btn">⌕</button>
-
-<button class="icon-btn" onclick="openCart()" style="position:relative">
-🛒
-<span class="cart-count" id="cartCount">0</span>
-</button>
-
-</div>
-
-</div>
-
-</header>
 
 
 <!-- =====================================================
      HERO
 ===================================================== -->
 
-<section class="hero" id="home">
-
-<div class="hero-container">
-
-<div class="hero-content">
-
-<div class="badge">
-<i></i>
-FRESH FROM FARM
-</div>
-
-<h1>
-Nature's Best<br>
-<span>On Your Table.</span>
-</h1>
-
-<p>
-Discover farm-fresh vegetables selected with care.
-Fresh quality, natural taste and fast doorstep delivery.
-</p>
-
-<div class="hero-buttons">
-
-<a href="#products" class="primary">
-Shop Fresh Vegetables →
-</a>
-
-<a href="#categories" class="secondary">
-Explore
-</a>
-
-</div>
-
-<div class="hero-info">
-
-<div>
-<strong>🌱 100%</strong>
-<small>Fresh Produce</small>
-</div>
-
-<div>
-<strong>🚚 Same Day</strong>
-<small>Delivery</small>
-</div>
-
-<div>
-<strong>🥬 Farm Picked</strong>
-<small>Every Morning</small>
-</div>
-
-</div>
-
-</div>
+<section class="hero">
 
 
-<div class="hero-visual">
+    <!-- THIS IS THE ONLY ELEMENT THAT ZOOMS -->
+    <div class="hero-image"></div>
 
-<div class="hero-image">
 
-<img
-src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1000&q=90"
-alt="Fresh vegetables"
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <a href="#" class="logo">
+
+            <div class="logo-icon">
+                🌿
+            </div>
+
+            <div>
+
+                <div class="logo-text">
+                    Fresh<span>Cart</span>
+                </div>
+
+                <small>
+                    FRESHNESS DELIVERED
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="#">HOME</a>
+
+            <a href="#shop">SHOP</a>
+
+            <a href="#categories">CATEGORIES</a>
+
+            <a href="#about">ABOUT</a>
+
+            <a href="#contact">CONTACT</a>
+
+        </div>
+
+
+        <div class="nav-right">
+
+            <div class="search">
+
+                <span>⌕</span>
+
+                <input
+                    type="text"
+                    placeholder="Search vegetables..."
+                >
+
+            </div>
+
+
+            <button class="icon-btn">
+                ♡
+            </button>
+
+
+            <button
+                class="icon-btn"
+                onclick="openCart()"
+            >
+                🛒
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- HERO CONTENT -->
+
+    <div class="hero-content">
+
+        <div class="content">
+
+            <div class="subtitle">
+                Nature's Goodness
+            </div>
+
+
+            <h1>
+
+                Fresh
+                <span>&amp; Healthy</span>
+
+                <br>
+
+                Vegetables
+
+            </h1>
+
+
+            <p class="description">
+
+                Farm-fresh vegetables carefully selected
+                and delivered straight to your doorstep.
+                Pure freshness in every bite.
+
+            </p>
+
+
+            <div class="tags">
+
+                <span>Farm Fresh</span>
+
+                <span>Natural</span>
+
+                <span>Pure</span>
+
+            </div>
+
+
+            <div class="buttons">
+
+                <a
+                    href="#shop"
+                    class="primary"
+                >
+                    SHOP NOW →
+                </a>
+
+
+                <a
+                    href="#categories"
+                    class="secondary"
+                >
+                    EXPLORE
+                </a>
+
+            </div>
+
+
+            <div class="features">
+
+                <div class="feature">
+
+                    <strong>
+                        ✓ 100%
+                    </strong>
+
+                    <small>
+                        Fresh Produce
+                    </small>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <strong>
+                        ⚡ FAST
+                    </strong>
+
+                    <small>
+                        Home Delivery
+                    </small>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <strong>
+                        ★ BEST
+                    </strong>
+
+                    <small>
+                        Quality
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- DISCOUNT -->
+
+        <div class="discount">
+
+            35%<br>
+            OFF
+
+        </div>
+
+
+        <!-- WATER DROPS -->
+
+        <div class="water-drop drop1"></div>
+
+        <div class="water-drop drop2"></div>
+
+        <div class="water-drop drop3"></div>
+
+
+        <!-- ORDER -->
+
+        <a
+            class="order"
+            href="https://wa.me/919999999999"
+        >
+
+            <span class="whatsapp">
+                ☎
+            </span>
+
+            Order on WhatsApp →
+
+        </a>
+
+
+        <!-- SCROLL -->
+
+        <div class="scroll">
+
+            <span class="mouse"></span>
+
+            SCROLL DOWN
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SHOP
+===================================================== -->
+
+<section
+    class="shop"
+    id="shop"
 >
 
-<div class="drops">
 
-<span class="drop"></span>
-<span class="drop"></span>
-<span class="drop"></span>
-<span class="drop"></span>
-<span class="drop"></span>
+    <div class="section-title">
 
-</div>
+        <small>
+            FARM TO HOME
+        </small>
 
-</div>
+        <h2>
+            Today's Fresh Picks
+        </h2>
 
-<div class="floating-label">
+        <p>
+            Fresh vegetables selected every morning
+        </p>
 
-<strong>💧 Just Washed</strong>
-<small>Fresh • Clean • Natural</small>
+    </div>
 
-</div>
 
-</div>
+    <div class="products">
 
-</div>
+
+        <!-- TOMATO -->
+
+        <article class="product">
+
+            <div class="product-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1546094096-0df4bcaaa337?auto=format&fit=crop&w=900&q=90"
+                    alt="Fresh Tomato"
+                >
+
+            </div>
+
+            <div class="product-info">
+
+                <small>
+                    Fresh Produce
+                </small>
+
+                <h3>
+                    Tomato
+                </h3>
+
+                <p>
+                    Juicy farm fresh tomatoes
+                </p>
+
+                <div class="product-bottom">
+
+                    <span class="price">
+                        ₹40 / kg
+                    </span>
+
+                    <button
+                        class="add"
+                        onclick="addToCart('Tomato',40)"
+                    >
+                        ADD +
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- CARROT -->
+
+        <article class="product">
+
+            <div class="product-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1445282768818-728615cc910a?auto=format&fit=crop&w=900&q=90"
+                    alt="Fresh Carrot"
+                >
+
+            </div>
+
+            <div class="product-info">
+
+                <small>
+                    Root Vegetable
+                </small>
+
+                <h3>
+                    Carrot
+                </h3>
+
+                <p>
+                    Crunchy and naturally sweet
+                </p>
+
+                <div class="product-bottom">
+
+                    <span class="price">
+                        ₹60 / kg
+                    </span>
+
+                    <button
+                        class="add"
+                        onclick="addToCart('Carrot',60)"
+                    >
+                        ADD +
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- SPINACH -->
+
+        <article class="product">
+
+            <div class="product-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1576045057995-568f588f82fb?auto=format&fit=crop&w=900&q=90"
+                    alt="Fresh Spinach"
+                >
+
+            </div>
+
+            <div class="product-info">
+
+                <small>
+                    Leafy Greens
+                </small>
+
+                <h3>
+                    Spinach
+                </h3>
+
+                <p>
+                    Fresh green leafy goodness
+                </p>
+
+                <div class="product-bottom">
+
+                    <span class="price">
+                        ₹25 / bunch
+                    </span>
+
+                    <button
+                        class="add"
+                        onclick="addToCart('Spinach',25)"
+                    >
+                        ADD +
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- POTATO -->
+
+        <article class="product">
+
+            <div class="product-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=900&q=90"
+                    alt="Fresh Potato"
+                >
+
+            </div>
+
+            <div class="product-info">
+
+                <small>
+                    Root Vegetable
+                </small>
+
+                <h3>
+                    Potato
+                </h3>
+
+                <p>
+                    Fresh everyday potatoes
+                </p>
+
+                <div class="product-bottom">
+
+                    <span class="price">
+                        ₹35 / kg
+                    </span>
+
+                    <button
+                        class="add"
+                        onclick="addToCart('Potato',35)"
+                    >
+                        ADD +
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+    </div>
 
 </section>
 
 
-<!-- =====================================================
-     SEARCH
-===================================================== -->
 
-<div class="search-section">
+<footer id="contact">
 
-<div class="search">
+    © 2026 FreshCart
+    · Fresh vegetables delivered with care.
 
-<span>🔎</span>
+</footer>
 
-<input
-id="searchInput"
-type="text"
-placeholder="Search fresh vegetables..."
-oninput="searchProducts()"
->
-
-<button>Search</button>
-
-</div>
-
-</div>
-
-
-<!-- =====================================================
-     CATEGORIES
-===================================================== -->
-
-<section class="section reveal" id="categories">
-
-<div class="heading">
-
-<small>SHOP BY TYPE</small>
-
-<h2>Fresh Categories</h2>
-
-<p>Choose your favourite fresh vegetables</p>
-
-</div>
-
-
-<div class="categories">
-
-<div class="category">
-<div class="category-image">
-<img src="https://images.unsplash.com/photo-1576045057995-568f588f82fb?auto=format&fit=crop&w=500&q=90">
-</div>
-<h3>Leafy Greens</h3>
-<p>Fresh & healthy</p>
-</div>
-
-<div class="category">
-<div class="category-image">
-<img src="https://images.unsplash.com/photo-1445282768818-728615cc910a?auto=format&fit=crop&w=500&q=90">
-</div>
-<h3>Root Vegetables</h3>
-<p>Farm fresh</p>
-</div>
-
-<div class="category">
-<div class="category-image">
-<img src="https://images.unsplash.com/photo-1546094096-0df4bcaaa337?auto=format&fit=crop&w=500&q=90">
-</div>
-<h3>Fresh Produce</h3>
-<p>Daily selected</p>
-</div>
-
-<div class="category">
-<div class="category-image">
-<img src="https://images.unsplash.com/photo-1594282486552-05b8b4a7c0b8?auto=format&fit=crop&w=500&q=90">
-</div>
-<h3>Organic Picks</h3>
-<p>Natural goodness</p>
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-     PRODUCTS
-===================================================== -->
-
-<section class="section reveal" id="products">
-
-<div class="heading">
-
-<small>OUR FRESH PICKS</small>
-
-<h2>Today's Vegetables</h2>
-
-<p>Freshly selected for your kitchen</p>
-
-</div>
-
-
-<div class="filters">
-
-<button class="filter active" onclick="filterProducts('all',this)">
-All
-</button>
-
-<button class="filter" onclick="filterProducts('root',this)">
-Root
-</button>
-
-<button class="filter" onclick="filterProducts('green',this)">
-Greens
-</button>
-
-<button class="filter" onclick="filterProducts('fruit',this)">
-Fresh Produce
-</button>
-
-</div>
-
-
-<div class="products" id="productsGrid">
-
-<!-- TOMATO -->
-
-<div class="product" data-name="Tomato" data-category="fruit">
-
-<button class="heart">♡</button>
-
-<div class="product-photo">
-
-<img src="https://images.unsplash.com/photo-1546094096-0df4bcaaa337?auto=format&fit=crop&w=900&q=90">
-
-</div>
-
-<div class="product-info">
-
-<span class="product-category">Fresh Produce</span>
-
-<h3>Tomato</h3>
-
-<p>Juicy farm fresh tomatoes</p>
-
-<div class="product-bottom">
-
-<div class="price">₹40 <small>/ kg</small></div>
-
-<button class="add" onclick="addToCart('Tomato',40)">
-Add +
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- CARROT -->
-
-<div class="product" data-name="Carrot" data-category="root">
-
-<button class="heart">♡</button>
-
-<div class="product-photo">
-
-<img src="https://images.unsplash.com/photo-1445282768818-728615cc910a?auto=format&fit=crop&w=900&q=90">
-
-</div>
-
-<div class="product-info">
-
-<span class="product-category">Root</span>
-
-<h3>Carrot</h3>
-
-<p>Crunchy naturally sweet carrots</p>
-
-<div class="product-bottom">
-
-<div class="price">₹60 <small>/ kg</small></div>
-
-<button class="add" onclick="addToCart('Carrot',60)">
-Add +
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- POTATO -->
-
-<div class="product" data-name="Potato" data-category="root">
-
-<button class="heart">♡</button>
-
-<div class="product-photo">
-
-<img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=900&q=90">
-
-</div>
-
-<div class="product-info">
-
-<span class="product-category">Root</span>
-
-<h3>Potato</h3>
-
-<p>Fresh everyday potatoes</p>
-
-<div class="product-bottom">
-
-<div class="price">₹35 <small>/ kg</small></div>
-
-<button class="add" onclick="addToCart('Potato',35)">
-Add +
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- SPINACH -->
-
-<div class="product" data-name="Spinach" data-category="green">
-
-<button class="heart">♡</button>
-
-<div class="product-photo">
-
-<img src="https://images.unsplash.com/photo-1576045057995-568f588f82fb?auto=format&fit=crop&w=900&q=90">
-
-</div>
-
-<div class="product-info">
-
-<span class="product-category">Greens</span>
-
-<h3>Spinach</h3>
-
-<p>Fresh green leafy goodness</p>
-
-<div class="product-bottom">
-
-<div class="price">₹25 <small>/ bunch</small></div>
-
-<button class="add" onclick="addToCart('Spinach',25)">
-Add +
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- CABBAGE -->
-
-<div class="product" data-name="Cabbage" data-category="green">
-
-<button class="heart">♡</button>
-
-<div class="product-photo">
-
-<img src="https://images.unsplash.com/photo-1594282486552-05b8b4a7c0b8?auto=format&fit=crop&w=900&q=90">
-
-</div>
-
-<div class="product-info">
-
-<span class="product-category">Greens</span>
-
-<h3>Cabbage</h3>
-
-<p>Crisp fresh green cabbage</p>
-
-<div class="product-bottom">
-
-<div class="price">₹45 <small>/ kg</small></div>
-
-<button class="add" onclick="addToCart('Cabbage',45)">
-Add +
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- ONION -->
-
-<div class="product" data-name="Onion" data-category="root">
-
-<button class="heart">♡</button>
-
-<div class="product-photo">
-
-<img src="https://images.unsplash.com/photo-1508747703725-719777637510?auto=format&fit=crop&w=900&q=90">
-
-</div>
-
-<div class="product-info">
-
-<span class="product-category">Root</span>
-
-<h3>Onion</h3>
-
-<p>Fresh premium onions</p>
-
-<div class="product-bottom">
-
-<div class="price">₹50 <small>/ kg</small></div>
-
-<button class="add" onclick="addToCart('Onion',50)">
-Add +
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- CAULIFLOWER -->
-
-<div class="product" data-name="Cauliflower" data-category="green">
-
-<button class="heart">♡</button>
-
-<div class="product-photo">
-
-<img src="https://images.unsplash.com/photo-1568584711271-2f3b3c5e3d4a?auto=format&fit=crop&w=900&q=90">
-
-</div>
-
-<div class="product-info">
-
-<span class="product-category">Greens</span>
-
-<h3>Cauliflower</h3>
-
-<p>Fresh white cauliflower</p>
-
-<div class="product-bottom">
-
-<div class="price">₹55 <small>/ kg</small></div>
-
-<button class="add" onclick="addToCart('Cauliflower',55)">
-Add +
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- BRINJAL -->
-
-<div class="product" data-name="Brinjal" data-category="fruit">
-
-<button class="heart">♡</button>
-
-<div class="product-photo">
-
-<img src="https://images.unsplash.com/photo-1610557892470-a4c0a6b7d3c9?auto=format&fit=crop&w=900&q=90">
-
-</div>
-
-<div class="product-info">
-
-<span class="product-category">Fresh Produce</span>
-
-<h3>Brinjal</h3>
-
-<p>Glossy fresh purple brinjal</p>
-
-<div class="product-bottom">
-
-<div class="price">₹45 <small>/ kg</small></div>
-
-<button class="add" onclick="addToCart('Brinjal',45)">
-Add +
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-     ABOUT
-===================================================== -->
-
-<section class="about reveal" id="about">
-
-<div class="about-inner">
-
-<h2>Freshness You Can See.</h2>
-
-<p>
-We carefully select every vegetable to bring natural freshness
-straight from farms to your kitchen. No unnecessary processing.
-Just fresh vegetables, clean quality and simple shopping.
-</p>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-     CART
-===================================================== -->
-
-<div class="cart-panel" id="cartPanel">
-
-<div class="cart-head">
-
-<h2>Your Cart</h2>
-
-<button class="close" onclick="closeCart()">×</button>
-
-</div>
-
-<div id="cartItems"></div>
-
-<div class="cart-total">
-
-<span>Total</span>
-
-<span>₹<span id="cartTotal">0</span></span>
-
-</div>
-
-<button class="checkout" onclick="checkout()">
-Order on WhatsApp
-</button>
-
-</div>
 
 
 <script>
 
-/* =========================================================
+/* =========================
    CART
-========================================================= */
+========================= */
 
-let cart=[];
+let cart = [];
+
 
 function addToCart(name,price){
 
-    let existing=cart.find(item=>item.name===name);
+    const existing =
+        cart.find(
+            item => item.name === name
+        );
+
 
     if(existing){
-        existing.qty++;
-    }else{
+
+        existing.quantity++;
+
+    }
+
+    else{
+
         cart.push({
             name:name,
             price:price,
-            qty:1
+            quantity:1
         });
-    }
-
-    updateCart();
-
-    const panel=document.getElementById("cartPanel");
-
-    panel.classList.add("open");
-
-}
-
-function updateCart(){
-
-    const container=document.getElementById("cartItems");
-
-    const count=document.getElementById("cartCount");
-
-    const total=document.getElementById("cartTotal");
-
-    container.innerHTML="";
-
-    let totalPrice=0;
-    let totalQty=0;
-
-    cart.forEach((item,index)=>{
-
-        totalPrice+=item.price*item.qty;
-        totalQty+=item.qty;
-
-        const div=document.createElement("div");
-
-        div.className="cart-item";
-
-        div.innerHTML=`
-
-        <div>
-            <strong>${item.name}</strong>
-            <small>
-            ₹${item.price} × ${item.qty}
-            </small>
-        </div>
-
-        <button
-        onclick="removeItem(${index})"
-        style="
-        border:0;
-        background:#ffe7e7;
-        color:#d33;
-        border-radius:7px;
-        padding:6px 10px;">
-        Remove
-        </button>
-
-        `;
-
-        container.appendChild(div);
-
-    });
-
-    count.innerText=totalQty;
-
-    total.innerText=totalPrice;
-
-}
-
-function removeItem(index){
-
-    cart.splice(index,1);
-
-    updateCart();
-
-}
-
-function openCart(){
-
-    document
-    .getElementById("cartPanel")
-    .classList.add("open");
-
-}
-
-function closeCart(){
-
-    document
-    .getElementById("cartPanel")
-    .classList.remove("open");
-
-}
-
-
-/* =========================================================
-   WHATSAPP
-========================================================= */
-
-function checkout(){
-
-    if(cart.length===0){
-
-        alert("Your cart is empty!");
-
-        return;
 
     }
 
-    let message="🥬 FreshCart Order%0A%0A";
 
-    let total=0;
-
-    cart.forEach(item=>{
-
-        message+=
-        `${item.name} - ${item.qty} × ₹${item.price}%0A`;
-
-        total+=item.price*item.qty;
-
-    });
-
-    message+=
-    `%0A💰 Total: ₹${total}`;
-
-    const phone="919999999999";
-
-    window.open(
-        `https://wa.me/${phone}?text=${message}`,
-        "_blank"
+    alert(
+        name +
+        " added to cart!"
     );
 
 }
 
 
-/* =========================================================
-   SEARCH
-========================================================= */
+/* =========================
+   IMAGE ONLY ZOOM
+========================= */
 
-function searchProducts(){
+/*
+   DO NOT add transform to:
+   .hero
+   .hero-content
+   .navbar
+   .content
+   .discount
 
-    const value=
-    document
-    .getElementById("searchInput")
-    .value
-    .toLowerCase();
-
-    document
-    .querySelectorAll(".product")
-    .forEach(product=>{
-
-        const name=
-        product.dataset.name.toLowerCase();
-
-        product.style.display=
-        name.includes(value)
-        ? ""
-        : "none";
-
-    });
-
-}
-
-
-/* =========================================================
-   FILTER
-========================================================= */
-
-function filterProducts(category,button){
-
-    document
-    .querySelectorAll(".filter")
-    .forEach(btn=>{
-        btn.classList.remove("active");
-    });
-
-    button.classList.add("active");
-
-    document
-    .querySelectorAll(".product")
-    .forEach(product=>{
-
-        if(
-            category==="all" ||
-            product.dataset.category===category
-        ){
-
-            product.style.display="";
-
-        }else{
-
-            product.style.display="none";
-
-        }
-
-    });
-
-}
-
-
-/* =========================================================
-   SCROLL REVEAL
-========================================================= */
-
-const observer=
-new IntersectionObserver(
-entries=>{
-
-    entries.forEach(entry=>{
-
-        if(entry.isIntersecting){
-
-            entry.target.classList.add("show");
-
-        }
-
-    });
-
-},
-{
-    threshold:.12
-}
-);
-
-document
-.querySelectorAll(".reveal")
-.forEach(element=>{
-    observer.observe(element);
-});
-
-
-/* =========================================================
-   HEART ANIMATION
-========================================================= */
-
-document
-.querySelectorAll(".heart")
-.forEach(button=>{
-
-    button.addEventListener("click",()=>{
-
-        if(button.innerText==="♡"){
-
-            button.innerText="♥";
-            button.style.color="#e54848";
-
-        }else{
-
-            button.innerText="♡";
-            button.style.color="";
-
-        }
-
-    });
-
-});
+   Only .hero-image has animation.
+*/
 
 </script>
 
