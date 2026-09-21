@@ -4,32 +4,41 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>FreshCart | Fresh & Healthy Vegetables</title>
+<title>FreshCart Vegetables | Fresh Every Day</title>
+
+<meta name="description"
+content="Fresh quality vegetables at affordable prices. Check today's vegetable prices and order easily.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
-/* =========================
-   BASIC
-========================= */
+:root{
+    --green:#79c267;
+    --green-dark:#173b24;
+    --green-deep:#0c2114;
+    --cream:#f5f0df;
+    --white:#ffffff;
+    --muted:#b6c2b8;
+    --glass:rgba(255,255,255,.07);
+    --border:rgba(255,255,255,.12);
+    --shadow:0 25px 70px rgba(0,0,0,.28);
+}
 
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-}
-
-html{
     scroll-behavior:smooth;
 }
 
 body{
     font-family:"DM Sans",sans-serif;
-    background:#07130b;
-    color:white;
+    background:var(--green-deep);
+    color:var(--white);
     overflow-x:hidden;
 }
 
@@ -38,1617 +47,2096 @@ a{
     color:inherit;
 }
 
-button,
-input{
+button{
     font-family:inherit;
 }
 
-
-/* =========================
-   HERO
-========================= */
-
-.hero{
-    height:100vh;
-    min-height:650px;
-    position:relative;
-    overflow:hidden;
-    isolation:isolate;
+img{
+    display:block;
+    max-width:100%;
 }
-
-
-/* =========================
-   ONLY IMAGE ZOOM
-========================= */
-
-.hero-image{
-    position:absolute;
-    inset:0;
-    z-index:-3;
-
-    background-image:url("https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=2000&q=95");
-
-    background-size:cover;
-    background-position:center;
-
-    animation:imageZoom 12s ease-in-out infinite alternate;
-
-    will-change:transform;
-}
-
-
-/*
-   IMPORTANT:
-   Only .hero-image is animated.
-   So text/navbar/buttons won't zoom.
-*/
-
-@keyframes imageZoom{
-
-    0%{
-        transform:scale(1);
-    }
-
-    100%{
-        transform:scale(1.10);
-    }
-
-}
-
-
-/* =========================
-   IMAGE DARK OVERLAY
-========================= */
-
-.hero-image::after{
-    content:"";
-
-    position:absolute;
-    inset:0;
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(3,12,7,.92) 0%,
-            rgba(3,12,7,.72) 35%,
-            rgba(3,12,7,.20) 75%,
-            rgba(3,12,7,.12) 100%
-        ),
-
-        linear-gradient(
-            0deg,
-            rgba(0,0,0,.55),
-            transparent 50%
-        );
-}
-
 
 /* =========================
    NAVBAR
 ========================= */
 
 .navbar{
-    width:92%;
-    max-width:1400px;
-    height:80px;
-
-    margin:auto;
-
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1000;
+    padding:18px 6%;
     display:flex;
-    align-items:center;
     justify-content:space-between;
-
-    position:relative;
-    z-index:10;
-
-    border-bottom:1px solid rgba(255,255,255,.18);
+    align-items:center;
+    background:rgba(12,33,20,.72);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(255,255,255,.08);
 }
-
 
 .logo{
-    display:flex;
-    align-items:center;
-    gap:10px;
+    font-family:"Playfair Display",serif;
+    font-size:27px;
+    font-weight:800;
+    color:#fff;
 }
 
-
-.logo-icon{
-    width:40px;
-    height:40px;
-
-    border-radius:12px;
-
-    display:grid;
-    place-items:center;
-
-    background:linear-gradient(
-        135deg,
-        #c6fa75,
-        #43a944
-    );
-
-    font-size:21px;
-
-    box-shadow:
-        0 8px 25px rgba(95,200,75,.25);
+.logo span{
+    color:var(--green);
 }
-
-
-.logo-text{
-    font-size:21px;
-    font-weight:700;
-}
-
-
-.logo-text span{
-    color:#a9ef62;
-}
-
-
-.logo small{
-    display:block;
-    font-size:8px;
-    letter-spacing:1.5px;
-    color:#bac6bc;
-    margin-top:2px;
-}
-
 
 .nav-links{
     display:flex;
-    gap:32px;
+    gap:30px;
+    align-items:center;
 }
-
 
 .nav-links a{
-    color:#e1e8e2;
-    font-size:12px;
-    position:relative;
-}
-
-
-.nav-links a::after{
-    content:"";
-
-    position:absolute;
-
-    left:0;
-    bottom:-9px;
-
-    width:0;
-    height:2px;
-
-    background:#a9ef62;
-
+    font-size:14px;
+    color:#dfe8df;
     transition:.3s;
 }
-
 
 .nav-links a:hover{
-    color:#a9ef62;
+    color:var(--green);
 }
 
-
-.nav-links a:hover::after{
-    width:100%;
-}
-
-
-/* =========================
-   NAV RIGHT
-========================= */
-
-.nav-right{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-
-.search{
-    width:220px;
-    height:40px;
-
+.cart-btn{
+    position:relative;
+    border:1px solid rgba(255,255,255,.15);
+    background:rgba(255,255,255,.08);
+    color:white;
+    padding:10px 15px;
     border-radius:30px;
-
-    display:flex;
-    align-items:center;
-
-    padding:0 14px;
-
-    background:rgba(255,255,255,.08);
-
-    border:1px solid rgba(255,255,255,.25);
-
-    backdrop-filter:blur(12px);
-}
-
-
-.search span{
-    margin-right:8px;
-}
-
-
-.search input{
-    width:100%;
-
-    background:none;
-    border:0;
-    outline:0;
-
-    color:white;
-
-    font-size:11px;
-}
-
-
-.search input::placeholder{
-    color:#c7d0c9;
-}
-
-
-.icon-btn{
-    width:40px;
-    height:40px;
-
-    border-radius:50%;
-
-    border:1px solid rgba(255,255,255,.25);
-
-    background:rgba(255,255,255,.08);
-
-    color:white;
-
     cursor:pointer;
-
+    font-size:18px;
     transition:.3s;
 }
 
-
-.icon-btn:hover{
-    color:#a9ef62;
-    border-color:#a9ef62;
-    transform:translateY(-3px);
+.cart-btn:hover{
+    background:var(--green);
+    color:#102515;
 }
 
+.cart-count{
+    position:absolute;
+    top:-7px;
+    right:-5px;
+    width:20px;
+    height:20px;
+    background:#e84c4c;
+    border-radius:50%;
+    font-size:11px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
 
 /* =========================
-   HERO CONTENT
+   HERO
 ========================= */
 
-.hero-content{
-    width:92%;
-    max-width:1400px;
-
-    height:calc(100vh - 80px);
-
-    margin:auto;
-
+.hero{
+    min-height:100vh;
+    position:relative;
     display:flex;
     align-items:center;
+    overflow:hidden;
+    background:
+        linear-gradient(90deg,
+        rgba(5,20,10,.97) 0%,
+        rgba(5,20,10,.82) 40%,
+        rgba(5,20,10,.28) 75%,
+        rgba(5,20,10,.45) 100%),
+        url("https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=2000&q=90")
+        center/cover;
+}
 
+.hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        radial-gradient(circle at 70% 40%,rgba(121,194,103,.18),transparent 35%);
+    pointer-events:none;
+}
+
+.hero-content{
     position:relative;
-    z-index:5;
+    z-index:2;
+    width:90%;
+    max-width:1250px;
+    margin:auto;
+    padding-top:70px;
 }
 
-
-.content{
-    max-width:650px;
-
-    animation:contentAppear 1s ease both;
+.hero-small{
+    color:var(--green);
+    text-transform:uppercase;
+    letter-spacing:4px;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:18px;
 }
 
-
-@keyframes contentAppear{
-
-    from{
-        opacity:0;
-        transform:translateY(30px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-
+.hero h1{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(50px,7vw,92px);
+    line-height:1;
+    max-width:760px;
 }
 
+.hero h1 span{
+    color:var(--green);
+}
+
+.hero p{
+    max-width:590px;
+    margin:25px 0;
+    color:#d1dbd2;
+    line-height:1.8;
+    font-size:17px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    border:none;
+    cursor:pointer;
+    padding:14px 24px;
+    border-radius:40px;
+    font-weight:700;
+    transition:.35s;
+}
+
+.btn-primary{
+    background:var(--green);
+    color:#102415;
+    box-shadow:0 10px 30px rgba(121,194,103,.2);
+}
+
+.btn-primary:hover{
+    transform:translateY(-3px);
+    box-shadow:0 15px 35px rgba(121,194,103,.35);
+}
+
+.btn-outline{
+    border:1px solid rgba(255,255,255,.25);
+    color:white;
+    background:rgba(255,255,255,.06);
+}
+
+.btn-outline:hover{
+    background:white;
+    color:#16351f;
+}
+
+.floating-tomato{
+    position:absolute;
+    right:10%;
+    bottom:12%;
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    background:url("https://images.unsplash.com/photo-1561136594-7f68413baa99?auto=format&fit=crop&w=500&q=85")
+    center/cover;
+    box-shadow:0 25px 50px rgba(0,0,0,.5);
+    animation:float 5s ease-in-out infinite;
+    z-index:3;
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0) rotate(0deg)}
+    50%{transform:translateY(-22px) rotate(4deg)}
+}
 
 /* =========================
-   TITLE
+   GENERAL
 ========================= */
 
-.subtitle{
-    color:#a9ef62;
+section{
+    padding:100px 6%;
+}
 
-    font-family:
-        "Playfair Display",
-        serif;
+.section-head{
+    text-align:center;
+    max-width:700px;
+    margin:0 auto 55px;
+}
 
-    font-size:20px;
-
-    font-style:italic;
-
+.section-label{
+    color:var(--green);
+    text-transform:uppercase;
+    letter-spacing:3px;
+    font-size:12px;
+    font-weight:700;
     margin-bottom:12px;
 }
 
-
-h1{
-    font-family:
-        "Playfair Display",
-        serif;
-
-    font-size:
-        clamp(55px,6.5vw,92px);
-
-    line-height:.92;
-
-    letter-spacing:-3px;
-
-    margin-bottom:25px;
+.section-head h2{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(34px,5vw,55px);
 }
 
-
-h1 span{
-    color:#a9ef62;
+.section-head p{
+    color:var(--muted);
+    margin-top:15px;
+    line-height:1.7;
 }
-
-
-.description{
-    max-width:520px;
-
-    color:#d1dad3;
-
-    font-size:15px;
-
-    line-height:1.8;
-}
-
-
-.tags{
-    display:flex;
-
-    gap:15px;
-
-    margin-top:18px;
-
-    font-size:12px;
-
-    color:#edf5ef;
-}
-
-
-.tags span:not(:last-child)::after{
-    content:"•";
-
-    margin-left:15px;
-
-    color:#a9ef62;
-}
-
-
-/* =========================
-   BUTTONS
-========================= */
-
-.buttons{
-    display:flex;
-
-    gap:12px;
-
-    margin-top:30px;
-}
-
-
-.primary{
-    padding:14px 25px;
-
-    border:0;
-
-    border-radius:11px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #c1f66d,
-            #55c34b
-        );
-
-    color:#09200c;
-
-    font-weight:700;
-
-    font-size:13px;
-
-    cursor:pointer;
-
-    box-shadow:
-        0 12px 30px
-        rgba(89,200,70,.25);
-
-    transition:.35s;
-}
-
-
-.primary:hover{
-    transform:translateY(-4px);
-
-    box-shadow:
-        0 18px 35px
-        rgba(89,200,70,.35);
-}
-
-
-.secondary{
-    padding:14px 24px;
-
-    border-radius:11px;
-
-    border:1px solid
-        rgba(255,255,255,.3);
-
-    background:
-        rgba(255,255,255,.07);
-
-    color:white;
-
-    font-weight:600;
-
-    font-size:13px;
-
-    backdrop-filter:blur(10px);
-
-    transition:.35s;
-}
-
-
-.secondary:hover{
-    background:
-        rgba(255,255,255,.14);
-
-    transform:translateY(-4px);
-}
-
 
 /* =========================
    FEATURES
 ========================= */
 
 .features{
-    display:flex;
-
-    margin-top:40px;
+    background:#102c19;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    padding-top:55px;
+    padding-bottom:55px;
 }
-
 
 .feature{
-    padding-right:25px;
-
-    margin-right:25px;
-
-    border-right:
-        1px solid
-        rgba(255,255,255,.2);
+    padding:25px;
+    border:1px solid var(--border);
+    border-radius:20px;
+    background:rgba(255,255,255,.035);
 }
 
-
-.feature:last-child{
-    border:0;
+.feature-icon{
+    font-size:30px;
+    margin-bottom:12px;
 }
 
-
-.feature strong{
-    display:block;
-
-    font-size:12px;
+.feature h3{
+    font-size:17px;
+    margin-bottom:7px;
 }
 
-
-.feature small{
-    color:#aab7ad;
-
-    font-size:10px;
+.feature p{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.6;
 }
-
 
 /* =========================
-   DISCOUNT
+   VEGETABLES
 ========================= */
 
-.discount{
-    position:absolute;
-
-    right:5%;
-    top:18%;
-
-    width:75px;
-    height:75px;
-
-    border-radius:50%;
-
-    display:grid;
-    place-items:center;
-
-    text-align:center;
-
+.products-section{
     background:
-        rgba(105,190,70,.9);
-
-    color:white;
-
-    font-size:12px;
-
-    font-weight:700;
-
-    z-index:7;
-
-    animation:
-        discountFloat
-        4s
-        ease-in-out
-        infinite;
+        radial-gradient(circle at 20% 20%,rgba(121,194,103,.08),transparent 30%),
+        var(--green-deep);
 }
 
-
-@keyframes discountFloat{
-
-    0%,100%{
-        transform:translateY(0);
-    }
-
-    50%{
-        transform:
-            translateY(-8px)
-            rotate(5deg);
-    }
-
-}
-
-
-/* =========================
-   WATER DROPS
-========================= */
-
-.water-drop{
-    position:absolute;
-
-    z-index:4;
-
-    width:18px;
-    height:25px;
-
-    border-radius:
-        60% 40% 65% 35%;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,255,255,.95),
-            rgba(180,225,240,.25)
-        );
-
-    box-shadow:
-        inset 2px 2px 4px
-        rgba(255,255,255,.95),
-
-        0 3px 8px
-        rgba(0,0,0,.25);
-
-    animation:
-        dropFloat
-        3s
-        ease-in-out
-        infinite;
-}
-
-
-.drop1{
-    left:68%;
-    top:38%;
-}
-
-
-.drop2{
-    left:78%;
-    top:48%;
-
-    width:13px;
-    height:19px;
-
-    animation-delay:.7s;
-}
-
-
-.drop3{
-    left:87%;
-    top:35%;
-
-    width:16px;
-    height:23px;
-
-    animation-delay:1.3s;
-}
-
-
-@keyframes dropFloat{
-
-    0%,100%{
-        transform:
-            translateY(0)
-            scale(1);
-
-        opacity:.7;
-    }
-
-    50%{
-        transform:
-            translateY(-6px)
-            scale(1.08);
-
-        opacity:1;
-    }
-
-}
-
-
-/* =========================
-   ORDER FLOAT
-========================= */
-
-.order{
-    position:absolute;
-
-    right:5%;
-    bottom:40px;
-
-    z-index:8;
-
+.controls{
+    max-width:1100px;
+    margin:0 auto 40px;
     display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    padding:11px 18px;
-
-    border-radius:30px;
-
-    background:
-        rgba(8,30,13,.75);
-
-    border:
-        1px solid
-        rgba(169,239,98,.45);
-
-    backdrop-filter:blur(14px);
-
-    font-size:11px;
-
-    animation:
-        orderFloat
-        4s
-        ease-in-out
-        infinite;
+    justify-content:space-between;
+    gap:15px;
+    flex-wrap:wrap;
 }
 
-
-.whatsapp{
-    width:29px;
-    height:29px;
-
-    border-radius:50%;
-
-    display:grid;
-    place-items:center;
-
-    background:#48c966;
-}
-
-
-@keyframes orderFloat{
-
-    50%{
-        transform:translateY(-7px);
-    }
-
-}
-
-
-/* =========================
-   SCROLL
-========================= */
-
-.scroll{
-    position:absolute;
-
-    bottom:25px;
-    left:0;
-
-    display:flex;
-    align-items:center;
-
-    gap:9px;
-
-    color:#bbc5bd;
-
-    font-size:9px;
-
-    letter-spacing:1px;
-}
-
-
-.mouse{
-    width:17px;
-    height:26px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.6);
-
-    border-radius:12px;
-
+.search-box{
+    flex:1;
+    min-width:220px;
     position:relative;
 }
 
-
-.mouse::after{
-    content:"";
-
-    position:absolute;
-
-    width:3px;
-    height:6px;
-
-    border-radius:4px;
-
-    background:#a9ef62;
-
-    left:50%;
-    top:5px;
-
-    transform:translateX(-50%);
-
-    animation:
-        mouseScroll
-        1.5s
-        infinite;
+.search-box input{
+    width:100%;
+    padding:14px 18px;
+    border-radius:40px;
+    border:1px solid var(--border);
+    outline:none;
+    background:var(--glass);
+    color:white;
+    font-size:14px;
 }
 
-
-@keyframes mouseScroll{
-
-    to{
-        top:15px;
-        opacity:0;
-    }
-
+.search-box input::placeholder{
+    color:#9eaaa0;
 }
 
-
-/* =========================
-   SHOP SECTION
-========================= */
-
-.shop{
-    background:#f2f6ee;
-
-    color:#17231a;
-
-    padding:90px 6%;
+.categories{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
 }
 
-
-.section-title{
-    text-align:center;
-
-    margin-bottom:45px;
+.category-btn{
+    border:1px solid var(--border);
+    background:var(--glass);
+    color:#dbe6dc;
+    padding:10px 16px;
+    border-radius:30px;
+    cursor:pointer;
+    transition:.3s;
 }
 
-
-.section-title small{
-    color:#348b43;
-
-    font-weight:700;
-
-    letter-spacing:2px;
-
-    font-size:10px;
+.category-btn:hover,
+.category-btn.active{
+    background:var(--green);
+    color:#102415;
+    border-color:var(--green);
 }
-
-
-.section-title h2{
-    font-family:
-        "Playfair Display",
-        serif;
-
-    font-size:45px;
-
-    margin:8px 0;
-}
-
-
-.section-title p{
-    color:#748077;
-
-    font-size:13px;
-}
-
-
-/* =========================
-   PRODUCT CARDS
-========================= */
 
 .products{
     max-width:1200px;
-
     margin:auto;
-
     display:grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
-    gap:25px;
+    grid-template-columns:repeat(4,1fr);
+    gap:22px;
 }
 
-
-.product{
-    transition:.4s;
+.product-card{
+    background:rgba(255,255,255,.055);
+    border:1px solid var(--border);
+    border-radius:24px;
+    overflow:hidden;
+    transition:.35s;
 }
 
-
-.product:hover{
-    transform:translateY(-8px);
+.product-card:hover{
+    transform:translateY(-7px);
+    border-color:rgba(121,194,103,.5);
+    box-shadow:var(--shadow);
 }
-
 
 .product-image{
-    height:280px;
-
+    height:220px;
     overflow:hidden;
-
-    border-radius:25px;
-
-    box-shadow:
-        0 18px 35px
-        rgba(25,55,28,.13);
+    position:relative;
 }
-
 
 .product-image img{
     width:100%;
     height:100%;
-
     object-fit:cover;
-
-    transition:
-        transform .8s
-        cubic-bezier(.2,.8,.2,1);
+    transition:transform .65s cubic-bezier(.2,.7,.2,1);
 }
 
-
-.product:hover img{
-    transform:scale(1.15);
+/* IMAGE ONLY ZOOM */
+.product-card:hover .product-image img{
+    transform:scale(1.12);
 }
 
-
-.product-info{
-    padding:14px 3px;
-}
-
-
-.product-info small{
-    color:#3d904c;
-
-    font-size:9px;
-
-    letter-spacing:1px;
-
-    font-weight:700;
-
-    text-transform:uppercase;
-}
-
-
-.product-info h3{
-    font-size:18px;
-
-    margin:5px 0;
-}
-
-
-.product-info p{
-    color:#7a857c;
-
+.stock{
+    position:absolute;
+    top:12px;
+    left:12px;
+    background:rgba(11,33,20,.8);
+    backdrop-filter:blur(10px);
+    color:#d7f5d2;
+    padding:6px 10px;
+    border-radius:20px;
     font-size:11px;
 }
 
+.product-info{
+    padding:18px;
+}
 
-.product-bottom{
+.product-info h3{
+    font-family:"Playfair Display",serif;
+    font-size:22px;
+}
+
+.product-meta{
     display:flex;
-
-    align-items:center;
-
     justify-content:space-between;
-
+    align-items:center;
     margin-top:12px;
 }
 
-
 .price{
-    font-weight:700;
+    color:var(--green);
+    font-size:18px;
+    font-weight:800;
 }
 
-
-.add{
-    border:0;
-
-    border-radius:9px;
-
-    padding:9px 14px;
-
-    background:#277d39;
-
-    color:white;
-
+.price small{
+    color:#9fac9f;
     font-size:11px;
+    font-weight:400;
+}
 
-    font-weight:700;
-
+.add-btn{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    border:none;
+    background:var(--green);
+    color:#0e2615;
+    font-size:21px;
     cursor:pointer;
-
     transition:.3s;
 }
 
+.add-btn:hover{
+    transform:rotate(90deg) scale(1.08);
+}
 
-.add:hover{
+/* =========================
+   ABOUT
+========================= */
+
+.about{
+    background:#f0ebd9;
+    color:#19351f;
+}
+
+.about-grid{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:70px;
+    align-items:center;
+}
+
+.about-image{
+    height:520px;
+    border-radius:30px;
+    overflow:hidden;
+}
+
+.about-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform .8s;
+}
+
+.about-image:hover img{
     transform:scale(1.06);
 }
 
+.about-content .section-label{
+    color:#4c9c45;
+}
+
+.about-content h2{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(35px,5vw,58px);
+    line-height:1.1;
+}
+
+.about-content p{
+    margin-top:20px;
+    line-height:1.8;
+    color:#5c6c5e;
+}
+
+.about-list{
+    margin-top:25px;
+    display:grid;
+    gap:12px;
+}
+
+.about-list div{
+    display:flex;
+    gap:10px;
+    align-items:center;
+    font-weight:600;
+}
+
+/* =========================
+   DAILY PRICE
+========================= */
+
+.price-section{
+    background:#102c19;
+}
+
+.price-table{
+    max-width:900px;
+    margin:auto;
+    border:1px solid var(--border);
+    border-radius:25px;
+    overflow:hidden;
+}
+
+.price-row{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    padding:18px 25px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    align-items:center;
+}
+
+.price-row:last-child{
+    border-bottom:none;
+}
+
+.price-row.header{
+    background:rgba(121,194,103,.13);
+    color:var(--green);
+    font-weight:700;
+}
+
+.price-row span:nth-child(2){
+    color:#bfcac0;
+}
+
+.price-value{
+    text-align:right;
+    color:var(--green);
+    font-weight:800;
+}
+
+/* =========================
+   REVIEWS
+========================= */
+
+.reviews{
+    background:var(--green-deep);
+}
+
+.review-grid{
+    max-width:1100px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.review{
+    background:rgba(255,255,255,.05);
+    border:1px solid var(--border);
+    border-radius:22px;
+    padding:25px;
+}
+
+.stars{
+    color:#ffd45c;
+    margin-bottom:15px;
+}
+
+.review p{
+    color:#c2ccc4;
+    line-height:1.7;
+    font-size:14px;
+}
+
+.reviewer{
+    margin-top:20px;
+    font-weight:700;
+}
+
+/* =========================
+   LOCATION
+========================= */
+
+.location{
+    background:#f0ebd9;
+    color:#17351f;
+}
+
+.location-grid{
+    max-width:1100px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+}
+
+.location-card{
+    background:white;
+    border-radius:25px;
+    padding:35px;
+    box-shadow:0 20px 50px rgba(20,40,20,.08);
+}
+
+.location-card h3{
+    font-family:"Playfair Display",serif;
+    font-size:30px;
+    margin-bottom:20px;
+}
+
+.info{
+    display:flex;
+    gap:15px;
+    margin:20px 0;
+}
+
+.info-icon{
+    font-size:22px;
+}
+
+.info strong{
+    display:block;
+    margin-bottom:4px;
+}
+
+.info span{
+    color:#687569;
+    font-size:14px;
+}
+
+.map{
+    min-height:380px;
+    border-radius:25px;
+    overflow:hidden;
+    background:
+        linear-gradient(rgba(18,50,27,.4),rgba(18,50,27,.4)),
+        url("https://images.unsplash.com/photo-1524666041070-9a876749c2d1?auto=format&fit=crop&w=1200&q=85")
+        center/cover;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.map a{
+    background:white;
+    color:#17351f;
+    padding:15px 24px;
+    border-radius:40px;
+    font-weight:700;
+}
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact{
+    text-align:center;
+    background:
+        radial-gradient(circle at center,rgba(121,194,103,.15),transparent 45%),
+        #0b2012;
+}
+
+.contact h2{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(38px,6vw,65px);
+}
+
+.contact p{
+    max-width:600px;
+    margin:15px auto 30px;
+    color:var(--muted);
+}
 
 /* =========================
    FOOTER
 ========================= */
 
 footer{
-    background:#07130b;
-
-    color:#8f9d93;
-
-    text-align:center;
-
-    padding:35px;
-
-    font-size:11px;
+    background:#07150c;
+    padding:35px 6%;
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+    color:#94a095;
+    font-size:13px;
 }
 
+footer strong{
+    color:white;
+}
 
 /* =========================
-   RESPONSIVE
+   CART DRAWER
 ========================= */
 
-@media(max-width:1000px){
+.cart-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    z-index:2000;
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
+}
+
+.cart-overlay.open{
+    opacity:1;
+    visibility:visible;
+}
+
+.cart-drawer{
+    position:absolute;
+    top:0;
+    right:0;
+    width:min(430px,100%);
+    height:100%;
+    background:#102c19;
+    padding:25px;
+    transform:translateX(100%);
+    transition:.4s;
+    overflow-y:auto;
+}
+
+.cart-overlay.open .cart-drawer{
+    transform:translateX(0);
+}
+
+.cart-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.cart-header h2{
+    font-family:"Playfair Display",serif;
+    font-size:30px;
+}
+
+.close-cart{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    border:1px solid var(--border);
+    background:var(--glass);
+    color:white;
+    cursor:pointer;
+    font-size:20px;
+}
+
+.cart-item{
+    display:grid;
+    grid-template-columns:65px 1fr auto;
+    gap:12px;
+    align-items:center;
+    padding:15px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.cart-item img{
+    width:65px;
+    height:65px;
+    object-fit:cover;
+    border-radius:12px;
+}
+
+.cart-item h4{
+    font-size:15px;
+}
+
+.cart-item small{
+    color:#aebbb0;
+}
+
+.quantity{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-top:7px;
+}
+
+.quantity button{
+    width:25px;
+    height:25px;
+    border:none;
+    border-radius:50%;
+    cursor:pointer;
+}
+
+.remove{
+    background:none;
+    color:#ff8585;
+    border:none;
+    cursor:pointer;
+    font-size:12px;
+    margin-top:7px;
+}
+
+.cart-total{
+    margin-top:25px;
+    padding:20px;
+    background:rgba(255,255,255,.05);
+    border-radius:18px;
+}
+
+.total-line{
+    display:flex;
+    justify-content:space-between;
+    font-size:20px;
+    font-weight:800;
+}
+
+.whatsapp-btn{
+    width:100%;
+    margin-top:15px;
+    background:#25d366;
+    color:#06240f;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+    position:fixed;
+    bottom:25px;
+    left:50%;
+    transform:translate(-50%,30px);
+    background:#f4f0df;
+    color:#17351f;
+    padding:13px 20px;
+    border-radius:30px;
+    opacity:0;
+    pointer-events:none;
+    transition:.35s;
+    z-index:5000;
+    font-weight:600;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translate(-50%,0);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:950px){
 
     .nav-links{
         display:none;
     }
 
-    .search{
-        width:180px;
-    }
-
     .products{
-        grid-template-columns:
-            repeat(2,1fr);
-    }
-
-}
-
-
-@media(max-width:650px){
-
-    .hero{
-        min-height:800px;
-    }
-
-    .navbar{
-        height:70px;
-    }
-
-    .search{
-        display:none;
-    }
-
-    .hero-content{
-        height:calc(100vh - 70px);
-
-        align-items:center;
-    }
-
-    h1{
-        font-size:50px;
-
-        letter-spacing:-2px;
-    }
-
-    .description{
-        font-size:13px;
+        grid-template-columns:repeat(2,1fr);
     }
 
     .features{
-        flex-wrap:wrap;
-
-        gap:15px;
+        grid-template-columns:repeat(2,1fr);
     }
 
-    .feature{
-        margin:0;
-        padding-right:15px;
-    }
-
-    .discount{
-        width:62px;
-        height:62px;
-
-        top:20%;
-        right:5%;
-
-        font-size:10px;
-    }
-
-    .order{
-        right:5%;
-        bottom:20px;
-    }
-
-    .products{
+    .about-grid,
+    .location-grid{
         grid-template-columns:1fr;
     }
 
+    .review-grid{
+        grid-template-columns:1fr;
+    }
+
+    .about-image{
+        height:400px;
+    }
+}
+
+@media(max-width:600px){
+
+    section{
+        padding:75px 5%;
+    }
+
+    .navbar{
+        padding:15px 5%;
+    }
+
+    .hero{
+        min-height:750px;
+        background-position:65% center;
+    }
+
+    .hero-content{
+        width:90%;
+    }
+
+    .hero h1{
+        font-size:52px;
+    }
+
+    .floating-tomato{
+        width:65px;
+        height:65px;
+        right:7%;
+        bottom:10%;
+    }
+
+    .features{
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+    }
+
+    .feature{
+        padding:18px;
+    }
+
+    .products{
+        grid-template-columns:1fr 1fr;
+        gap:12px;
+    }
+
     .product-image{
+        height:160px;
+    }
+
+    .product-info{
+        padding:13px;
+    }
+
+    .product-info h3{
+        font-size:18px;
+    }
+
+    .price{
+        font-size:15px;
+    }
+
+    .add-btn{
+        width:34px;
+        height:34px;
+    }
+
+    .price-row{
+        padding:15px;
+        font-size:13px;
+    }
+
+    .about-image{
         height:320px;
     }
 
+    footer{
+        text-align:center;
+        justify-content:center;
+    }
 }
-
 
 </style>
 </head>
 
-
 <body>
 
+<!-- =========================
+     NAVBAR
+========================= -->
 
-<!-- =====================================================
-     HERO
-===================================================== -->
+<header class="navbar">
 
-<section class="hero">
+    <a href="#" class="logo">
+        Fresh<span>Cart</span>
+    </a>
 
-
-    <!-- THIS IS THE ONLY ELEMENT THAT ZOOMS -->
-    <div class="hero-image"></div>
-
-
-    <!-- NAVBAR -->
-
-    <nav class="navbar">
-
-        <a href="#" class="logo">
-
-            <div class="logo-icon">
-                🌿
-            </div>
-
-            <div>
-
-                <div class="logo-text">
-                    Fresh<span>Cart</span>
-                </div>
-
-                <small>
-                    FRESHNESS DELIVERED
-                </small>
-
-            </div>
-
-        </a>
-
-
-        <div class="nav-links">
-
-            <a href="#">HOME</a>
-
-            <a href="#shop">SHOP</a>
-
-            <a href="#categories">CATEGORIES</a>
-
-            <a href="#about">ABOUT</a>
-
-            <a href="#contact">CONTACT</a>
-
-        </div>
-
-
-        <div class="nav-right">
-
-            <div class="search">
-
-                <span>⌕</span>
-
-                <input
-                    type="text"
-                    placeholder="Search vegetables..."
-                >
-
-            </div>
-
-
-            <button class="icon-btn">
-                ♡
-            </button>
-
-
-            <button
-                class="icon-btn"
-                onclick="openCart()"
-            >
-                🛒
-            </button>
-
-        </div>
-
+    <nav class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#vegetables">Vegetables</a>
+        <a href="#about">About</a>
+        <a href="#prices">Prices</a>
+        <a href="#contact">Contact</a>
     </nav>
 
+    <button class="cart-btn" onclick="openCart()">
+        🛒
+        <span class="cart-count" id="cartCount">0</span>
+    </button>
 
-    <!-- HERO CONTENT -->
+</header>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero" id="home">
 
     <div class="hero-content">
 
-        <div class="content">
-
-            <div class="subtitle">
-                Nature's Goodness
-            </div>
-
-
-            <h1>
-
-                Fresh
-                <span>&amp; Healthy</span>
-
-                <br>
-
-                Vegetables
-
-            </h1>
-
-
-            <p class="description">
-
-                Farm-fresh vegetables carefully selected
-                and delivered straight to your doorstep.
-                Pure freshness in every bite.
-
-            </p>
-
-
-            <div class="tags">
-
-                <span>Farm Fresh</span>
-
-                <span>Natural</span>
-
-                <span>Pure</span>
-
-            </div>
-
-
-            <div class="buttons">
-
-                <a
-                    href="#shop"
-                    class="primary"
-                >
-                    SHOP NOW →
-                </a>
-
-
-                <a
-                    href="#categories"
-                    class="secondary"
-                >
-                    EXPLORE
-                </a>
-
-            </div>
-
-
-            <div class="features">
-
-                <div class="feature">
-
-                    <strong>
-                        ✓ 100%
-                    </strong>
-
-                    <small>
-                        Fresh Produce
-                    </small>
-
-                </div>
-
-
-                <div class="feature">
-
-                    <strong>
-                        ⚡ FAST
-                    </strong>
-
-                    <small>
-                        Home Delivery
-                    </small>
-
-                </div>
-
-
-                <div class="feature">
-
-                    <strong>
-                        ★ BEST
-                    </strong>
-
-                    <small>
-                        Quality
-                    </small>
-
-                </div>
-
-            </div>
-
+        <div class="hero-small">
+            Fresh • Local • Quality
         </div>
 
+        <h1>
+            Freshness You Can
+            <span>Taste.</span>
+        </h1>
 
-        <!-- DISCOUNT -->
+        <p>
+            Fresh vegetables selected with care and brought
+            to your table every day. Check today's prices and
+            choose what you need.
+        </p>
 
-        <div class="discount">
+        <div class="hero-buttons">
 
-            35%<br>
-            OFF
+            <a href="#vegetables" class="btn btn-primary">
+                🥬 Explore Vegetables
+            </a>
 
-        </div>
-
-
-        <!-- WATER DROPS -->
-
-        <div class="water-drop drop1"></div>
-
-        <div class="water-drop drop2"></div>
-
-        <div class="water-drop drop3"></div>
-
-
-        <!-- ORDER -->
-
-        <a
-            class="order"
-            href="https://wa.me/919999999999"
-        >
-
-            <span class="whatsapp">
-                ☎
-            </span>
-
-            Order on WhatsApp →
-
-        </a>
-
-
-        <!-- SCROLL -->
-
-        <div class="scroll">
-
-            <span class="mouse"></span>
-
-            SCROLL DOWN
+            <a href="#contact" class="btn btn-outline">
+                📍 Visit Our Shop
+            </a>
 
         </div>
 
     </div>
 
+    <div class="floating-tomato"></div>
+
 </section>
 
 
+<!-- =========================
+     FEATURES
+========================= -->
 
-<!-- =====================================================
-     SHOP
-===================================================== -->
+<section class="features">
 
-<section
-    class="shop"
-    id="shop"
->
+    <div class="feature">
+        <div class="feature-icon">🥬</div>
+        <h3>Fresh Stock</h3>
+        <p>Fresh vegetables stocked regularly.</p>
+    </div>
+
+    <div class="feature">
+        <div class="feature-icon">🌱</div>
+        <h3>Quality First</h3>
+        <p>Carefully selected quality produce.</p>
+    </div>
+
+    <div class="feature">
+        <div class="feature-icon">💰</div>
+        <h3>Fair Prices</h3>
+        <p>Competitive prices updated regularly.</p>
+    </div>
+
+    <div class="feature">
+        <div class="feature-icon">🏪</div>
+        <h3>Easy Pickup</h3>
+        <p>Visit our shop and pick your vegetables.</p>
+    </div>
+
+</section>
 
 
-    <div class="section-title">
+<!-- =========================
+     VEGETABLES
+========================= -->
 
-        <small>
-            FARM TO HOME
-        </small>
+<section class="products-section" id="vegetables">
 
-        <h2>
-            Today's Fresh Picks
-        </h2>
+    <div class="section-head">
+
+        <div class="section-label">
+            Fresh Collection
+        </div>
+
+        <h2>Today's Vegetables</h2>
 
         <p>
-            Fresh vegetables selected every morning
+            Explore our fresh collection and check the
+            latest available prices.
         </p>
 
     </div>
 
 
-    <div class="products">
+    <div class="controls">
+
+        <div class="search-box">
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search vegetables..."
+                oninput="renderProducts()">
+        </div>
+
+        <div class="categories">
+
+            <button class="category-btn active"
+                    onclick="filterCategory('All',this)">
+                All
+            </button>
+
+            <button class="category-btn"
+                    onclick="filterCategory('Vegetables',this)">
+                Vegetables
+            </button>
+
+            <button class="category-btn"
+                    onclick="filterCategory('Leafy',this)">
+                Leafy
+            </button>
+
+            <button class="category-btn"
+                    onclick="filterCategory('Roots',this)">
+                Roots
+            </button>
+
+        </div>
+
+    </div>
 
 
-        <!-- TOMATO -->
+    <div class="products" id="products"></div>
 
-        <article class="product">
+</section>
 
-            <div class="product-image">
 
-                <img
-                    src="https://images.unsplash.com/photo-1546094096-0df4bcaaa337?auto=format&fit=crop&w=900&q=90"
-                    alt="Fresh Tomato"
-                >
+<!-- =========================
+     ABOUT
+========================= -->
 
+<section class="about" id="about">
+
+    <div class="about-grid">
+
+        <div class="about-image">
+
+            <img
+            src="https://images.unsplash.com/photo-1597362925123-77861d3fbac7?auto=format&fit=crop&w=1000&q=85"
+            alt="Fresh vegetables">
+
+        </div>
+
+
+        <div class="about-content">
+
+            <div class="section-label">
+                About Our Shop
             </div>
 
-            <div class="product-info">
+            <h2>
+                Fresh produce.
+                Honest service.
+            </h2>
 
-                <small>
-                    Fresh Produce
-                </small>
+            <p>
+                We believe good food starts with good ingredients.
+                That's why we carefully select fresh vegetables
+                for our customers every day.
+            </p>
 
-                <h3>
-                    Tomato
-                </h3>
+            <div class="about-list">
 
-                <p>
-                    Juicy farm fresh tomatoes
-                </p>
+                <div>
+                    <span>✓</span>
+                    Fresh vegetables
+                </div>
 
-                <div class="product-bottom">
+                <div>
+                    <span>✓</span>
+                    Daily stock updates
+                </div>
 
-                    <span class="price">
-                        ₹40 / kg
-                    </span>
+                <div>
+                    <span>✓</span>
+                    Fair and transparent pricing
+                </div>
 
-                    <button
-                        class="add"
-                        onclick="addToCart('Tomato',40)"
-                    >
-                        ADD +
-                    </button>
-
+                <div>
+                    <span>✓</span>
+                    Friendly local service
                 </div>
 
             </div>
 
-        </article>
-
-
-        <!-- CARROT -->
-
-        <article class="product">
-
-            <div class="product-image">
-
-                <img
-                    src="https://images.unsplash.com/photo-1445282768818-728615cc910a?auto=format&fit=crop&w=900&q=90"
-                    alt="Fresh Carrot"
-                >
-
-            </div>
-
-            <div class="product-info">
-
-                <small>
-                    Root Vegetable
-                </small>
-
-                <h3>
-                    Carrot
-                </h3>
-
-                <p>
-                    Crunchy and naturally sweet
-                </p>
-
-                <div class="product-bottom">
-
-                    <span class="price">
-                        ₹60 / kg
-                    </span>
-
-                    <button
-                        class="add"
-                        onclick="addToCart('Carrot',60)"
-                    >
-                        ADD +
-                    </button>
-
-                </div>
-
-            </div>
-
-        </article>
-
-
-        <!-- SPINACH -->
-
-        <article class="product">
-
-            <div class="product-image">
-
-                <img
-                    src="https://images.unsplash.com/photo-1576045057995-568f588f82fb?auto=format&fit=crop&w=900&q=90"
-                    alt="Fresh Spinach"
-                >
-
-            </div>
-
-            <div class="product-info">
-
-                <small>
-                    Leafy Greens
-                </small>
-
-                <h3>
-                    Spinach
-                </h3>
-
-                <p>
-                    Fresh green leafy goodness
-                </p>
-
-                <div class="product-bottom">
-
-                    <span class="price">
-                        ₹25 / bunch
-                    </span>
-
-                    <button
-                        class="add"
-                        onclick="addToCart('Spinach',25)"
-                    >
-                        ADD +
-                    </button>
-
-                </div>
-
-            </div>
-
-        </article>
-
-
-        <!-- POTATO -->
-
-        <article class="product">
-
-            <div class="product-image">
-
-                <img
-                    src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=900&q=90"
-                    alt="Fresh Potato"
-                >
-
-            </div>
-
-            <div class="product-info">
-
-                <small>
-                    Root Vegetable
-                </small>
-
-                <h3>
-                    Potato
-                </h3>
-
-                <p>
-                    Fresh everyday potatoes
-                </p>
-
-                <div class="product-bottom">
-
-                    <span class="price">
-                        ₹35 / kg
-                    </span>
-
-                    <button
-                        class="add"
-                        onclick="addToCart('Potato',35)"
-                    >
-                        ADD +
-                    </button>
-
-                </div>
-
-            </div>
-
-        </article>
-
+        </div>
 
     </div>
 
 </section>
 
 
+<!-- =========================
+     DAILY PRICES
+========================= -->
 
-<footer id="contact">
+<section class="price-section" id="prices">
 
-    © 2026 FreshCart
-    · Fresh vegetables delivered with care.
+    <div class="section-head">
+
+        <div class="section-label">
+            Updated Daily
+        </div>
+
+        <h2>Today's Price List</h2>
+
+        <p>
+            Prices can change depending on the day's market rate.
+        </p>
+
+    </div>
+
+
+    <div class="price-table">
+
+        <div class="price-row header">
+            <span>Vegetable</span>
+            <span>Category</span>
+            <span style="text-align:right">Price</span>
+        </div>
+
+        <div id="priceTable"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     REVIEWS
+========================= -->
+
+<section class="reviews">
+
+    <div class="section-head">
+
+        <div class="section-label">
+            Happy Customers
+        </div>
+
+        <h2>What Customers Say</h2>
+
+    </div>
+
+
+    <div class="review-grid">
+
+        <div class="review">
+
+            <div class="stars">★★★★★</div>
+
+            <p>
+                "The vegetables are always fresh and the prices
+                are reasonable. Very convenient."
+            </p>
+
+            <div class="reviewer">
+                — Priya
+            </div>
+
+        </div>
+
+
+        <div class="review">
+
+            <div class="stars">★★★★★</div>
+
+            <p>
+                "Good quality vegetables and friendly service.
+                I regularly visit this shop."
+            </p>
+
+            <div class="reviewer">
+                — Arun
+            </div>
+
+        </div>
+
+
+        <div class="review">
+
+            <div class="stars">★★★★★</div>
+
+            <p>
+                "I like checking the available vegetables before
+                visiting the shop."
+            </p>
+
+            <div class="reviewer">
+                — Meena
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     LOCATION
+========================= -->
+
+<section class="location" id="contact">
+
+    <div class="section-head">
+
+        <div class="section-label">
+            Come Visit Us
+        </div>
+
+        <h2>Find Our Shop</h2>
+
+    </div>
+
+
+    <div class="location-grid">
+
+        <div class="location-card">
+
+            <h3>FreshCart Vegetables</h3>
+
+            <div class="info">
+
+                <div class="info-icon">📍</div>
+
+                <div>
+                    <strong>Address</strong>
+                    <span>
+                        Your Shop Address, Your Area,
+                        Tamil Nadu
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="info">
+
+                <div class="info-icon">🕒</div>
+
+                <div>
+                    <strong>Opening Hours</strong>
+                    <span>
+                        Monday – Sunday<br>
+                        7:00 AM – 9:00 PM
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="info">
+
+                <div class="info-icon">📞</div>
+
+                <div>
+                    <strong>Phone</strong>
+                    <span>
+                        +91 98765 43210
+                    </span>
+                </div>
+
+            </div>
+
+
+            <a
+            href="https://wa.me/919876543210"
+            target="_blank"
+            class="btn btn-primary">
+                💬 WhatsApp Us
+            </a>
+
+        </div>
+
+
+        <div class="map">
+
+            <a
+            href="https://maps.google.com"
+            target="_blank">
+                📍 Open in Google Maps
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONTACT CTA
+========================= -->
+
+<section class="contact">
+
+    <div class="section-label">
+        Freshness Starts Here
+    </div>
+
+    <h2>
+        Need fresh vegetables?
+    </h2>
+
+    <p>
+        Check today's available vegetables and
+        message us on WhatsApp.
+    </p>
+
+    <a
+    href="https://wa.me/919876543210"
+    target="_blank"
+    class="btn btn-primary">
+
+        💬 Chat on WhatsApp
+
+    </a>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div>
+        © 2026 <strong>FreshCart Vegetables</strong>.
+        All rights reserved.
+    </div>
+
+    <div>
+        Fresh • Local • Quality
+    </div>
 
 </footer>
 
 
+<!-- =========================
+     CART
+========================= -->
+
+<div class="cart-overlay" id="cartOverlay">
+
+    <div class="cart-drawer">
+
+        <div class="cart-header">
+
+            <h2>Your Cart</h2>
+
+            <button
+            class="close-cart"
+            onclick="closeCart()">
+                ×
+            </button>
+
+        </div>
+
+        <div id="cartItems"></div>
+
+        <div class="cart-total">
+
+            <div class="total-line">
+                <span>Total</span>
+                <span id="cartTotal">₹0</span>
+            </div>
+
+            <button
+            class="btn whatsapp-btn"
+            onclick="orderWhatsApp()">
+
+                💬 Order via WhatsApp
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div class="toast" id="toast">
+    Added to cart ✓
+</div>
+
 
 <script>
 
-/* =========================
-   CART
-========================= */
+/* =====================================
+   VEGETABLE DATA
+
+   Later this will come from Firebase.
+===================================== */
+
+const vegetables = [
+
+    {
+        id:1,
+        name:"Tomato",
+        category:"Vegetables",
+        price:40,
+        unit:"kg",
+        stock:true,
+        image:"https://images.unsplash.com/photo-1561136594-7f68413baa99?auto=format&fit=crop&w=800&q=85"
+    },
+
+    {
+        id:2,
+        name:"Carrot",
+        category:"Roots",
+        price:60,
+        unit:"kg",
+        stock:true,
+        image:"https://images.unsplash.com/photo-1445282768818-728615cc910a?auto=format&fit=crop&w=800&q=85"
+    },
+
+    {
+        id:3,
+        name:"Potato",
+        category:"Roots",
+        price:35,
+        unit:"kg",
+        stock:true,
+        image:"https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=800&q=85"
+    },
+
+    {
+        id:4,
+        name:"Onion",
+        category:"Roots",
+        price:45,
+        unit:"kg",
+        stock:true,
+        image:"https://images.unsplash.com/photo-1580201092675-a0a6a6cafbb1?auto=format&fit=crop&w=800&q=85"
+    },
+
+    {
+        id:5,
+        name:"Green Chilli",
+        category:"Vegetables",
+        price:70,
+        unit:"kg",
+        stock:true,
+        image:"https://images.unsplash.com/photo-1588252303782-cb80119abd6d?auto=format&fit=crop&w=800&q=85"
+    },
+
+    {
+        id:6,
+        name:"Cabbage",
+        category:"Vegetables",
+        price:35,
+        unit:"kg",
+        stock:true,
+        image:"https://images.unsplash.com/photo-1594282486552-05f4d80fbbfd?auto=format&fit=crop&w=800&q=85"
+    },
+
+    {
+        id:7,
+        name:"Spinach",
+        category:"Leafy",
+        price:25,
+        unit:"bunch",
+        stock:true,
+        image:"https://images.unsplash.com/photo-1576045057995-568f588f82fb?auto=format&fit=crop&w=800&q=85"
+    },
+
+    {
+        id:8,
+        name:"Brinjal",
+        category:"Vegetables",
+        price:50,
+        unit:"kg",
+        stock:true,
+        image:"https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=800&q=85"
+    },
+
+    {
+        id:9,
+        name:"Cauliflower",
+        category:"Vegetables",
+        price:55,
+        unit:"piece",
+        stock:true,
+        image:"https://images.unsplash.com/photo-1568584711271-4c3e8e6e6f5a?auto=format&fit=crop&w=800&q=85"
+    },
+
+    {
+        id:10,
+        name:"Beetroot",
+        category:"Roots",
+        price:50,
+        unit:"kg",
+        stock:true,
+        image:"https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=800&q=85"
+    },
+
+    {
+        id:11,
+        name:"Coriander",
+        category:"Leafy",
+        price:20,
+        unit:"bunch",
+        stock:true,
+        image:"https://images.unsplash.com/photo-1588879460618-924b5a1b4e4b?auto=format&fit=crop&w=800&q=85"
+    },
+
+    {
+        id:12,
+        name:"Capsicum",
+        category:"Vegetables",
+        price:80,
+        unit:"kg",
+        stock:true,
+        image:"https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?auto=format&fit=crop&w=800&q=85"
+    }
+
+];
+
+
+/* =====================================
+   STATE
+===================================== */
+
+let selectedCategory = "All";
 
 let cart = [];
 
 
-function addToCart(name,price){
+/* =====================================
+   RENDER PRODUCTS
+===================================== */
+
+function renderProducts(){
+
+    const container =
+        document.getElementById("products");
+
+    const search =
+        document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    let filtered = vegetables.filter(item => {
+
+        const categoryMatch =
+            selectedCategory === "All" ||
+            item.category === selectedCategory;
+
+        const searchMatch =
+            item.name.toLowerCase().includes(search);
+
+        return categoryMatch && searchMatch;
+
+    });
+
+
+    if(filtered.length === 0){
+
+        container.innerHTML = `
+            <div style="
+                grid-column:1/-1;
+                text-align:center;
+                padding:50px;
+                color:#aab7ac;">
+                No vegetables found.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    container.innerHTML = filtered.map(item => `
+
+        <article class="product-card">
+
+            <div class="product-image">
+
+                <img
+                src="${item.image}"
+                alt="${item.name}"
+                loading="lazy">
+
+                <div class="stock">
+                    ${item.stock ? "Fresh Stock" : "Out of Stock"}
+                </div>
+
+            </div>
+
+
+            <div class="product-info">
+
+                <h3>${item.name}</h3>
+
+                <div class="product-meta">
+
+                    <div class="price">
+                        ₹${item.price}
+                        <small>/ ${item.unit}</small>
+                    </div>
+
+                    <button
+                    class="add-btn"
+                    onclick="addToCart(${item.id})"
+                    ${!item.stock ? "disabled" : ""}>
+
+                        +
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    `).join("");
+
+}
+
+
+/* =====================================
+   CATEGORY FILTER
+===================================== */
+
+function filterCategory(category, button){
+
+    selectedCategory = category;
+
+    document
+        .querySelectorAll(".category-btn")
+        .forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+    button.classList.add("active");
+
+    renderProducts();
+}
+
+
+/* =====================================
+   CART
+===================================== */
+
+function addToCart(id){
+
+    const product =
+        vegetables.find(item => item.id === id);
+
+    if(!product || !product.stock) return;
+
 
     const existing =
-        cart.find(
-            item => item.name === name
-        );
+        cart.find(item => item.id === id);
 
 
     if(existing){
 
         existing.quantity++;
 
-    }
-
-    else{
+    }else{
 
         cart.push({
-            name:name,
-            price:price,
+            ...product,
             quantity:1
         });
 
     }
 
 
-    alert(
-        name +
-        " added to cart!"
+    updateCart();
+
+    showToast(`${product.name} added to cart ✓`);
+}
+
+
+function updateCart(){
+
+    const cartCount =
+        document.getElementById("cartCount");
+
+    const totalItems =
+        cart.reduce(
+            (sum,item) => sum + item.quantity,
+            0
+        );
+
+    cartCount.textContent = totalItems;
+
+
+    renderCart();
+}
+
+
+function renderCart(){
+
+    const container =
+        document.getElementById("cartItems");
+
+
+    if(cart.length === 0){
+
+        container.innerHTML = `
+            <div style="
+                text-align:center;
+                padding:60px 10px;
+                color:#aebbb0;">
+
+                <div style="font-size:45px">
+                    🛒
+                </div>
+
+                <p style="margin-top:12px">
+                    Your cart is empty.
+                </p>
+
+            </div>
+        `;
+
+        document.getElementById("cartTotal")
+            .textContent = "₹0";
+
+        return;
+    }
+
+
+    container.innerHTML = cart.map(item => `
+
+        <div class="cart-item">
+
+            <img
+            src="${item.image}"
+            alt="${item.name}">
+
+            <div>
+
+                <h4>${item.name}</h4>
+
+                <small>
+                    ₹${item.price}/${item.unit}
+                </small>
+
+                <div class="quantity">
+
+                    <button
+                    onclick="changeQuantity(${item.id},-1)">
+                        −
+                    </button>
+
+                    <span>
+                        ${item.quantity}
+                    </span>
+
+                    <button
+                    onclick="changeQuantity(${item.id},1)">
+                        +
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div style="text-align:right">
+
+                <strong>
+                    ₹${item.price * item.quantity}
+                </strong>
+
+                <br>
+
+                <button
+                class="remove"
+                onclick="removeFromCart(${item.id})">
+
+                    Remove
+
+                </button>
+
+            </div>
+
+        </div>
+
+    `).join("");
+
+
+    const total =
+        cart.reduce(
+            (sum,item) =>
+                sum + item.price * item.quantity,
+            0
+        );
+
+
+    document.getElementById("cartTotal")
+        .textContent = `₹${total}`;
+}
+
+
+function changeQuantity(id, change){
+
+    const item =
+        cart.find(item => item.id === id);
+
+    if(!item) return;
+
+    item.quantity += change;
+
+    if(item.quantity <= 0){
+
+        cart =
+            cart.filter(item => item.id !== id);
+
+    }
+
+    updateCart();
+}
+
+
+function removeFromCart(id){
+
+    cart =
+        cart.filter(item => item.id !== id);
+
+    updateCart();
+}
+
+
+/* =====================================
+   CART OPEN / CLOSE
+===================================== */
+
+function openCart(){
+
+    document
+        .getElementById("cartOverlay")
+        .classList.add("open");
+
+}
+
+
+function closeCart(){
+
+    document
+        .getElementById("cartOverlay")
+        .classList.remove("open");
+
+}
+
+
+document
+    .getElementById("cartOverlay")
+    .addEventListener("click", function(e){
+
+        if(e.target === this){
+            closeCart();
+        }
+
+    });
+
+
+/* =====================================
+   WHATSAPP ORDER
+===================================== */
+
+function orderWhatsApp(){
+
+    if(cart.length === 0){
+
+        showToast("Your cart is empty");
+
+        return;
+    }
+
+
+    const phone = "919876543210";
+
+
+    let message =
+        "Hello FreshCart!%0A%0A" +
+        "I would like to order:%0A";
+
+
+    cart.forEach(item => {
+
+        message +=
+            `${item.name} - ${item.quantity} ${item.unit}%0A`;
+
+    });
+
+
+    const total =
+        cart.reduce(
+            (sum,item) =>
+                sum + item.price * item.quantity,
+            0
+        );
+
+
+    message +=
+        `%0AEstimated Total: ₹${total}` +
+        "%0A%0APlease confirm availability.";
+
+
+    window.open(
+        `https://wa.me/${phone}?text=${message}`,
+        "_blank"
     );
 
 }
 
 
-/* =========================
-   IMAGE ONLY ZOOM
-========================= */
+/* =====================================
+   PRICE TABLE
+===================================== */
 
-/*
-   DO NOT add transform to:
-   .hero
-   .hero-content
-   .navbar
-   .content
-   .discount
+function renderPriceTable(){
 
-   Only .hero-image has animation.
-*/
+    const table =
+        document.getElementById("priceTable");
+
+
+    table.innerHTML =
+        vegetables.map(item => `
+
+            <div class="price-row">
+
+                <span>${item.name}</span>
+
+                <span>${item.category}</span>
+
+                <span class="price-value">
+                    ₹${item.price}/${item.unit}
+                </span>
+
+            </div>
+
+        `).join("");
+
+}
+
+
+/* =====================================
+   TOAST
+===================================== */
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+
+    setTimeout(() => {
+
+        toast.classList.remove("show");
+
+    },2000);
+
+}
+
+
+/* =====================================
+   INITIAL LOAD
+===================================== */
+
+renderProducts();
+
+renderPriceTable();
+
+updateCart();
 
 </script>
 
